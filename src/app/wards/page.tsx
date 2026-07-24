@@ -18,7 +18,7 @@ export default function WardsPage() {
         intro="Wajir is made up of six constituencies and thirty wards. Select an area to see the campaign's local focus — and tell us what matters most where you live."
       />
 
-      <section className="bg-sand-50 py-14 sm:py-20">
+      <section className="bg-sand-50 py-12 sm:py-16 lg:py-20">
         <Container width="wide">
           <WajirMap />
         </Container>

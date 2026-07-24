@@ -26,17 +26,15 @@ export default function StoryPage() {
       />
 
       {/* Narrative chapters */}
-      <section className="bg-sand-50 py-16 sm:py-24">
+      <section className="bg-sand-50 py-12 sm:py-16 lg:py-24">
         <Container width="wide">
-          <div className="mx-auto max-w-5xl space-y-20 sm:space-y-28">
+          <div className="mx-auto max-w-5xl space-y-14 sm:space-y-20 lg:space-y-28">
             {storyChapters.map((ch, i) => {
               const flip = i % 2 === 1;
               return (
                 <Reveal key={ch.id} as="article">
                   <div
-                    className={`grid items-center gap-8 lg:grid-cols-12 lg:gap-14 ${
-                      flip ? "" : ""
-                    }`}
+                    className="grid items-center gap-6 sm:gap-8 lg:grid-cols-12 lg:gap-14"
                   >
                     <div className={`lg:col-span-7 ${flip ? "lg:order-2" : ""}`}>
                       <div className="flex items-center gap-3">
@@ -58,7 +56,7 @@ export default function StoryPage() {
                         alt={ch.heading}
                         ratio="5/4"
                         caption={`Photo for "${ch.heading}" — supply archival or campaign imagery.`}
-                        className="shadow-lg"
+                        className="shadow-lg w-full"
                       />
                     </div>
                   </div>
@@ -70,7 +68,7 @@ export default function StoryPage() {
       </section>
 
       {/* Timeline */}
-      <section className="border-t border-line bg-sand-100 py-16 sm:py-24">
+      <section className="border-t border-line bg-sand-100 py-12 sm:py-16 lg:py-24">
         <Container width="wide">
           <div className="mx-auto max-w-3xl">
             <Kicker>The record, in brief</Kicker>

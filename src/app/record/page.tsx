@@ -22,7 +22,7 @@ export default function RecordPage() {
         intro="Every entry below is drawn from Mohamed Abdi Affey's confirmed public record. Nothing here is invented; county-level items awaiting sourcing are clearly marked."
       />
 
-      <section className="bg-sand-50 py-16 sm:py-24">
+      <section className="bg-sand-50 py-12 sm:py-16 lg:py-24">
         <Container>
           <div className="flex items-center gap-3">
             <Kicker>National &amp; international</Kicker>

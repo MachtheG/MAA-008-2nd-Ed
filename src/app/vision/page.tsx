@@ -23,7 +23,7 @@ export default function VisionPage() {
         imageAlt="An open semi-arid expanse under a wide sky."
       />
 
-      <section className="bg-sand-50 py-14 sm:py-20">
+      <section className="bg-sand-50 py-12 sm:py-16 lg:py-20">
         <Container width="wide">
           <div className="mx-auto max-w-3xl">
             <p className="text-lg leading-relaxed text-ink-700">{visionIntro}</p>

@@ -20,7 +20,7 @@ export default function NewsPage() {
         intro="Statements, press coverage and upcoming events — rallies, town-halls and community meetings, ward by ward."
       />
 
-      <section className="bg-sand-50 py-14 sm:py-20">
+      <section className="bg-sand-50 py-12 sm:py-16 lg:py-20">
         <Container width="wide">
           <div className="grid gap-6 md:grid-cols-3">
             {newsItems.map((item) => (

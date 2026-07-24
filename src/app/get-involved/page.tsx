@@ -21,7 +21,7 @@ export default function GetInvolvedPage() {
       />
 
       {/* Volunteer */}
-      <section className="bg-sand-50 py-16 sm:py-20">
+      <section className="bg-sand-50 py-12 sm:py-16 lg:py-20">
         <Container width="wide">
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
             <div className="lg:pt-4">
@@ -53,7 +53,7 @@ export default function GetInvolvedPage() {
       </section>
 
       {/* Donate */}
-      <section id="donate" className="scroll-mt-24 border-t border-line bg-sand-100 py-16 sm:py-24">
+      <section id="donate" className="scroll-mt-24 border-t border-line bg-sand-100 py-12 sm:py-16 lg:py-24">
         <Container width="wide">
           <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:gap-16">
             <div className="lg:pt-4">

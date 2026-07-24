@@ -46,12 +46,13 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3 sm:px-8">
         {/* Brand */}
         <Link href="/" className="group flex items-center gap-3" aria-label={`${t.hero.name} — ${t.nav.home}`}>
-          <span
-            aria-hidden="true"
-            className="grid h-10 w-10 place-items-center rounded-md bg-flag-green font-display text-xl font-semibold text-sand-50 shadow-sm ring-1 ring-flag-green-dark/30"
-          >
-            A
-          </span>
+          <div className="relative h-10 w-10 rounded-md shadow-sm ring-1 ring-flag-green-dark/30 overflow-hidden bg-sand-50">
+            <img
+              src="/images/WajirCOA.jpeg"
+              alt="Wajir County Coat of Arms"
+              className="h-full w-full object-cover"
+            />
+          </div>
           <span className="leading-none">
             <span className="block font-display text-lg font-semibold tracking-tight text-ink-900">
               {/* Compact wordmark on mobile, full name from sm up */}

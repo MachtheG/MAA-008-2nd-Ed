@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { HomeHero } from "@/components/home/HomeHero";
+import { ElectionCountdown } from "@/components/ElectionCountdown";
 import { Container } from "@/components/ui/Container";
 import { Kicker } from "@/components/ui/Kicker";
 import { Button } from "@/components/ui/Button";
@@ -12,6 +13,7 @@ export default function HomePage() {
   return (
     <>
       <HomeHero />
+      <CountdownSection />
       <VisionTeaser />
       <StoryTeaser />
       <PullQuote />
@@ -25,7 +27,7 @@ export default function HomePage() {
 function VisionTeaser() {
   const featured = visionPillars.slice(0, 3);
   return (
-    <section className="bg-sand-50 bg-topo py-20 sm:py-28">
+    <section className="bg-sand-50 bg-topo py-16 sm:py-20 lg:py-28">
       <Container>
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-2xl">
@@ -75,7 +77,7 @@ function VisionTeaser() {
 
 function StoryTeaser() {
   return (
-    <section className="border-y border-line bg-sand-100 py-20 sm:py-28">
+    <section className="border-y border-line bg-sand-100 py-16 sm:py-20 lg:py-28">
       <Container>
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <Reveal className="order-2 lg:order-1">
@@ -94,7 +96,8 @@ function StoryTeaser() {
               alt="Official portrait of Mohamed Abdi Affey"
               caption="A portrait of Mohamed Abdi Affey — supply an official, rights-cleared photo."
               ratio="4/5"
-              className="mx-auto max-w-md shadow-xl"
+              className="mx-auto w-full max-w-md shadow-xl"
+              priority={true}
             />
           </Reveal>
         </div>
@@ -105,7 +108,7 @@ function StoryTeaser() {
 
 function PullQuote() {
   return (
-    <section className="relative overflow-hidden bg-flag-green-deep py-20 text-sand-50 sm:py-28">
+    <section className="relative overflow-hidden bg-flag-green-deep py-16 sm:py-20 lg:py-28 text-sand-50">
       <div className="absolute inset-0 bg-contour opacity-60" aria-hidden="true" />
       <Container width="prose" className="relative text-center">
         <span className="font-display text-6xl leading-none text-ochre-300" aria-hidden="true">
@@ -125,9 +128,23 @@ function PullQuote() {
   );
 }
 
+function CountdownSection() {
+  return (
+    <section className="bg-sand-100 py-16 sm:py-20">
+      <Container>
+        <div className="mx-auto max-w-2xl">
+          <Reveal>
+            <ElectionCountdown />
+          </Reveal>
+        </div>
+      </Container>
+    </section>
+  );
+}
+
 function CtaBand() {
   return (
-    <section className="bg-sand-50 py-20 sm:py-24">
+    <section className="bg-sand-50 py-16 sm:py-20 lg:py-24">
       <Container>
         <div className="relative overflow-hidden rounded-3xl bg-ink-900 px-7 py-14 text-sand-50 sm:px-14">
           <div className="absolute inset-0 bg-topo opacity-[0.15]" aria-hidden="true" />

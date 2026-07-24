@@ -33,7 +33,7 @@ export function PhotoSlot({
           alt={alt ?? ""}
           fill
           priority={priority}
-          sizes="(max-width: 768px) 100vw, 40vw"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 50vw"
           className="object-cover"
         />
       ) : (
