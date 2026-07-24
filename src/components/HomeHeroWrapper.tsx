@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 
 const HomeHero = dynamic(
-  () => import('./HomeHero'),
+  () => import('./home/HomeHero').then(mod => mod.HomeHero),
   { ssr: false }
 );
 
