@@ -1,19 +1,19 @@
+"use client";
+
 import { type ReactNode } from "react";
 import type { Status } from "@/content/candidate";
+import { useLanguage } from "@/i18n/LanguageProvider";
 
 const map = {
   verified: {
-    label: "Verified",
     dot: "bg-flag-green",
     chip: "bg-flag-green/10 text-flag-green-dark ring-flag-green/20",
   },
   draft: {
-    label: "Draft — for approval",
     dot: "bg-ochre-500",
     chip: "bg-ochre-400/20 text-ochre-600 ring-ochre-500/30",
   },
   tbc: {
-    label: "To confirm",
     dot: "bg-flag-red",
     chip: "bg-flag-red/10 text-flag-red ring-flag-red/20",
   },
@@ -26,13 +26,14 @@ export function StatusBadge({
   status: Status;
   className?: string;
 }) {
+  const { t } = useLanguage();
   const s = map[status];
   return (
     <span
       className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[0.68rem] font-semibold uppercase tracking-wide ring-1 ring-inset ${s.chip} ${className}`}
     >
       <span className={`h-1.5 w-1.5 rounded-full ${s.dot}`} aria-hidden="true" />
-      {s.label}
+      {t.ui.status[status]}
     </span>
   );
 }

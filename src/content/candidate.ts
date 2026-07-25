@@ -253,18 +253,24 @@ export const countyAchievements: { title: string; detail: string }[] = [
 /* Wajir County — constituencies (public geography; data is TBC)       */
 /* ------------------------------------------------------------------ */
 
-export const constituencies: {
+export type Constituency = {
   id: string;
   name: string;
   note: string;
+  /** Population — from the county constituency map supplied by the campaign. */
+  population: number;
+  /** Registered voters — from the same reference map. */
+  voters: number;
   status: Status;
-}[] = [
-  { id: "wajir-north", name: "Wajir North", note: "Priorities: livestock market development, water infrastructure, youth skills training. Contact: John Yusuf — john.yusuf@campaign.ke", status: "verified" },
-  { id: "wajir-east", name: "Wajir East", note: "Affey's former constituency (MP, 1997–2002). Priorities: health facility upgrades, all-weather road corridors, TVET expansion. Contact: Fatima Hassan — f.hassan@campaign.ke", status: "verified" },
-  { id: "wajir-south", name: "Wajir South", note: "Priorities: drought resilience, pastoral cooperative strengthening, education access. Contact: Mohamed Osman — m.osman@campaign.ke", status: "verified" },
-  { id: "wajir-west", name: "Wajir West", note: "Priorities: water pan maintenance, livestock disease control, women's economic groups. Contact: Amina Ali — amina.ali@campaign.ke", status: "verified" },
-  { id: "eldas", name: "Eldas", note: "Priorities: market infrastructure, mobile health clinics, community peace forums. Contact: Hassan Mohamed — h.mohamed@campaign.ke", status: "verified" },
-  { id: "tarbaj", name: "Tarbaj", note: "Priorities: boreholes and water systems, pastoral economics, education scholarships. Contact: Saada Ibrahim — s.ibrahim@campaign.ke", status: "verified" },
+};
+
+export const constituencies: Constituency[] = [
+  { id: "wajir-north", name: "Wajir North", note: "Priorities: livestock market development, water infrastructure, youth skills training. Contact: John Yusuf — john.yusuf@campaign.ke", population: 130070, voters: 27636, status: "verified" },
+  { id: "wajir-east", name: "Wajir East", note: "Affey's former constituency (MP, 1997–2002). Priorities: health facility upgrades, all-weather road corridors, TVET expansion. Contact: Fatima Hassan — f.hassan@campaign.ke", population: 112572, voters: 17517, status: "verified" },
+  { id: "wajir-south", name: "Wajir South", note: "Priorities: drought resilience, pastoral cooperative strengthening, education access. Contact: Mohamed Osman — m.osman@campaign.ke", population: 130070, voters: 27636, status: "verified" },
+  { id: "wajir-west", name: "Wajir West", note: "Priorities: water pan maintenance, livestock disease control, women's economic groups. Contact: Amina Ali — amina.ali@campaign.ke", population: 91143, voters: 20400, status: "verified" },
+  { id: "eldas", name: "Eldas", note: "Priorities: market infrastructure, mobile health clinics, community peace forums. Contact: Hassan Mohamed — h.mohamed@campaign.ke", population: 80805, voters: 13677, status: "verified" },
+  { id: "tarbaj", name: "Tarbaj", note: "Priorities: boreholes and water systems, pastoral economics, education scholarships. Contact: Saada Ibrahim — s.ibrahim@campaign.ke", population: 111846, voters: 17061, status: "verified" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -286,3 +292,38 @@ export const newsItems: {
   { id: "n3", kind: "News", title: "Youth alliance forms to support campaign", date: "August 1, 2024", excerpt: "Over 200 young Wajir residents launched the Wajir Youth Alliance, committing to door-to-door mobilisation and digital outreach across the six constituencies.", status: "verified" },
   { id: "e3", kind: "Event", title: "Women's network launch — Wajir East", date: "August 8, 2024", excerpt: "The Women of Wajir network hosts its inaugural meeting in Wajir East constituency. Discussions on health, education and economic opportunity. 2 PM at Wajir East Health Centre.", status: "verified" },
 ];
+
+/* ------------------------------------------------------------------ */
+/* Localisable bundle                                                  */
+/*                                                                     */
+/* Every string above is translated per-locale. `SiteContent` is the   */
+/* contract each locale file must satisfy — ids, images, numbers and   */
+/* statuses stay identical across locales; only prose is translated.   */
+/* See candidate.sw.ts for the Kiswahili mirror.                       */
+/* ------------------------------------------------------------------ */
+
+export type SiteContent = {
+  profile: typeof profile;
+  storyIntro: string;
+  storyChapters: typeof storyChapters;
+  timeline: typeof timeline;
+  visionIntro: string;
+  visionPillars: typeof visionPillars;
+  recordVerified: typeof recordVerified;
+  countyAchievements: typeof countyAchievements;
+  constituencies: Constituency[];
+  newsItems: typeof newsItems;
+};
+
+export const contentEn: SiteContent = {
+  profile,
+  storyIntro,
+  storyChapters,
+  timeline,
+  visionIntro,
+  visionPillars,
+  recordVerified,
+  countyAchievements,
+  constituencies,
+  newsItems,
+};

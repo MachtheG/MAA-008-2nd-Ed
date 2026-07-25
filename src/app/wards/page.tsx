@@ -1,28 +1,12 @@
 import type { Metadata } from "next";
-import { Container } from "@/components/ui/Container";
-import { PageHero } from "@/components/ui/PageHero";
-import { WajirMap } from "@/components/wards/WajirMap";
+import { WardsContent } from "./WardsContent";
 
 export const metadata: Metadata = {
   title: "Wajir County",
   description:
-    "Explore Wajir County's six constituencies and the campaign's local focus — an interactive schematic map, pending official boundary and ward data.",
+    "Explore Wajir County's six constituencies and the campaign's local focus — an interactive map traced from the county constituency map, with population and voter numbers.",
 };
 
 export default function WardsPage() {
-  return (
-    <>
-      <PageHero
-        kicker="Wajir County"
-        title="Six constituencies. One county. A plan for each."
-        intro="Wajir is made up of six constituencies and thirty wards. Select an area to see the campaign's local focus — and tell us what matters most where you live."
-      />
-
-      <section className="bg-sand-50 py-12 sm:py-16 lg:py-20">
-        <Container width="wide">
-          <WajirMap />
-        </Container>
-      </section>
-    </>
-  );
+  return <WardsContent />;
 }

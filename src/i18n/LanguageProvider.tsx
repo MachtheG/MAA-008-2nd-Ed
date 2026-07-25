@@ -6,13 +6,9 @@ import {
   useContext,
   useEffect,
   useMemo,
-  useState,
+  useSyncExternalStore,
 } from "react";
-import {
-  ACTIVE_LOCALES,
-  DEFAULT_LOCALE,
-  type Locale,
-} from "./config";
+import { ACTIVE_LOCALES, DEFAULT_LOCALE, type Locale } from "./config";
 import { getDictionary, type Dictionary } from "./dictionaries";
 
 type LanguageContextValue = {
@@ -25,15 +21,39 @@ const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 const STORAGE_KEY = "affey-locale";
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>(DEFAULT_LOCALE);
+/**
+ * The saved locale lives in localStorage — an external store — so it is read
+ * through useSyncExternalStore rather than an effect. That keeps SSR rendering
+ * the default locale, hydrates straight to the saved one, and avoids the
+ * cascading re-render an effect-plus-setState would cause.
+ */
+const listeners = new Set<() => void>();
 
-  // Restore saved preference (client-only; SSR renders the default locale).
-  useEffect(() => {
-    const saved = window.localStorage.getItem(STORAGE_KEY) as Locale | null;
-    if (saved && ACTIVE_LOCALES.includes(saved)) {
-      setLocaleState(saved);
-    }
+function subscribe(onChange: () => void) {
+  listeners.add(onChange);
+  // Keep other tabs in sync too.
+  window.addEventListener("storage", onChange);
+  return () => {
+    listeners.delete(onChange);
+    window.removeEventListener("storage", onChange);
+  };
+}
+
+function getSnapshot(): Locale {
+  const saved = window.localStorage.getItem(STORAGE_KEY) as Locale | null;
+  return saved && ACTIVE_LOCALES.includes(saved) ? saved : DEFAULT_LOCALE;
+}
+
+function getServerSnapshot(): Locale {
+  return DEFAULT_LOCALE;
+}
+
+export function LanguageProvider({ children }: { children: React.ReactNode }) {
+  const locale = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+
+  const setLocale = useCallback((l: Locale) => {
+    window.localStorage.setItem(STORAGE_KEY, l);
+    listeners.forEach((notify) => notify());
   }, []);
 
   // Keep <html lang> in sync for accessibility & SEO.
@@ -41,20 +61,13 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     document.documentElement.lang = locale;
   }, [locale]);
 
-  const setLocale = useCallback((l: Locale) => {
-    setLocaleState(l);
-    window.localStorage.setItem(STORAGE_KEY, l);
-  }, []);
-
   const value = useMemo<LanguageContextValue>(
     () => ({ locale, setLocale, t: getDictionary(locale) }),
     [locale, setLocale]
   );
 
   return (
-    <LanguageContext.Provider value={value}>
-      {children}
-    </LanguageContext.Provider>
+    <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>
   );
 }
 

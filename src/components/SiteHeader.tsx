@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -19,8 +20,6 @@ export function SiteHeader() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  useEffect(() => setOpen(false), [pathname]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -43,24 +42,31 @@ export function SiteHeader() {
           : "border-b border-transparent bg-sand-50"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3 sm:px-8">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-2.5 sm:gap-4 sm:px-8 sm:py-3">
         {/* Brand */}
-        <Link href="/" className="group flex items-center gap-3" aria-label={`${t.hero.name} — ${t.nav.home}`}>
-          <div className="relative h-10 w-10 rounded-md shadow-sm ring-1 ring-flag-green-dark/30 overflow-hidden bg-sand-50">
-            <img
-              src="/images/WajirCOA.jpeg"
-              alt="Wajir County Coat of Arms"
-              className="h-full w-full object-cover"
-            />
-          </div>
-          <span className="leading-none">
-            <span className="block font-display text-lg font-semibold tracking-tight text-ink-900">
+        <Link
+          href="/"
+          className="group flex min-w-0 items-center gap-2.5 sm:gap-3"
+          aria-label={`${t.hero.name} — ${t.nav.home}`}
+        >
+          <Image
+            src="/images/WajirCOA.jpeg"
+            alt="Wajir County coat of arms"
+            width={40}
+            height={40}
+            priority
+            className="h-9 w-9 shrink-0 rounded-md object-cover shadow-sm ring-1 ring-flag-green-dark/30 sm:h-10 sm:w-10"
+          />
+          <span className="min-w-0 leading-none">
+            <span className="block truncate font-display text-base font-semibold tracking-tight text-ink-900 sm:text-lg">
               {/* Compact wordmark on mobile, full name from sm up */}
               <span className="sm:hidden">AFFEY</span>
               <span className="hidden sm:inline">MOHAMED ABDI AFFEY</span>
             </span>
-            <span className="mt-0.5 block text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-flag-green-dark">
-              {t.hero.forOffice}
+            {/* Short form on phones so it never truncates mid-word */}
+            <span className="mt-0.5 block text-[0.6rem] font-semibold uppercase tracking-[0.16em] text-flag-green-dark sm:text-[0.66rem] sm:tracking-[0.2em]">
+              <span className="sm:hidden">{t.nav.brandLine2}</span>
+              <span className="hidden sm:inline">{t.hero.forOffice}</span>
             </span>
           </span>
         </Link>
@@ -86,8 +92,10 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
-          <LanguageToggle className="hidden sm:inline-flex" />
+        <div className="flex shrink-0 items-center gap-2">
+          {/* Language switch stays reachable at every width — it is the whole
+              point of the Kiswahili translation. */}
+          <LanguageToggle />
           <Link
             href="/get-involved#donate"
             className="hidden rounded-full bg-flag-red px-4 py-2 text-sm font-semibold text-sand-50 shadow-sm transition-transform hover:-translate-y-0.5 sm:inline-block"
@@ -100,7 +108,7 @@ export function SiteHeader() {
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls="mobile-menu"
-            className="grid h-10 w-10 place-items-center rounded-md border border-line-strong text-ink-800 xl:hidden"
+            className="grid h-9 w-9 shrink-0 place-items-center rounded-md border border-line-strong text-ink-800 sm:h-10 sm:w-10 xl:hidden"
           >
             <span className="sr-only">{open ? t.nav.close : t.nav.menu}</span>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -117,12 +125,16 @@ export function SiteHeader() {
       {/* Mobile menu */}
       {open && (
         <div id="mobile-menu" className="xl:hidden">
+          {/* Caps at the viewport so long menus scroll instead of being cut off */}
           <nav
             aria-label="Mobile"
-            className="mx-auto flex max-w-7xl flex-col border-t border-line bg-sand-50 px-5 py-3 sm:px-8"
+            className="mx-auto flex max-h-[calc(100dvh-3.75rem)] max-w-7xl flex-col overflow-y-auto overscroll-contain border-t border-line bg-sand-50 px-4 py-3 sm:px-8"
           >
+            {/* Closing on click (rather than in an effect on pathname) keeps
+                the menu in sync without a cascading re-render. */}
             <Link
               href="/"
+              onClick={() => setOpen(false)}
               aria-current={pathname === "/" ? "page" : undefined}
               className="rounded-md px-3 py-3 text-base font-medium text-ink-800 hover:bg-ink-900/5"
             >
@@ -132,6 +144,7 @@ export function SiteHeader() {
               <Link
                 key={l.href}
                 href={l.href}
+                onClick={() => setOpen(false)}
                 aria-current={l.active ? "page" : undefined}
                 className={`rounded-md px-3 py-3 text-base font-medium hover:bg-ink-900/5 ${
                   l.active ? "text-flag-green-dark" : "text-ink-800"
@@ -140,11 +153,11 @@ export function SiteHeader() {
                 {l.label}
               </Link>
             ))}
-            <div className="mt-2 flex items-center justify-between gap-3 border-t border-line pt-4">
-              <LanguageToggle />
+            <div className="mt-2 border-t border-line pt-4">
               <Link
                 href="/get-involved#donate"
-                className="rounded-full bg-flag-red px-5 py-2.5 text-sm font-semibold text-sand-50"
+                onClick={() => setOpen(false)}
+                className="block rounded-full bg-flag-red px-5 py-3 text-center text-sm font-semibold text-sand-50"
               >
                 {t.nav.donate}
               </Link>

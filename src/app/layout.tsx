@@ -4,6 +4,7 @@ import "./globals.css";
 import { LanguageProvider } from "@/i18n/LanguageProvider";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { SkipLink } from "@/components/SkipLink";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -42,14 +43,9 @@ export default function RootLayout({
       lang="en"
       className={`${fraunces.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-sand-50 text-ink-900">
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:z-60 focus:left-4 focus:top-4 focus:rounded-md focus:bg-ink-900 focus:px-4 focus:py-2 focus:text-sand-50"
-        >
-          Skip to content
-        </a>
+      <body className="flex min-h-full flex-col overflow-x-hidden bg-sand-50 text-ink-900">
         <LanguageProvider>
+          <SkipLink />
           <SiteHeader />
           <main id="main" className="flex-1">
             {children}
