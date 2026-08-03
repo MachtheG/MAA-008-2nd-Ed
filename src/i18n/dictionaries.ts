@@ -847,11 +847,311 @@ const sw: Dictionary = {
   },
 };
 
+const so: Dictionary = {
+  meta: {
+    title: "Mohamed Abdi Affey — Guddoomiyaha Gobolka Wajir",
+    description:
+      "Siyaasiyaha, diplomaatiga iyo cuqa Wajir. Laga bilaabo codka yar ee Bungega Kenya illaa miisaska nabad ee Geesiga Afrika — rekod adeegta, hadda guriga.",
+  },
+  nav: {
+    brandLine1: "AFFEY",
+    brandLine2: "Wajir",
+    story: "Hadithu",
+    vision: "Waxyaaraha Wajir",
+    record: "Rekodka",
+    priorities: "Asha Guud",
+    wards: "Gobolka Wajir",
+    news: "Wararka & Habraha",
+    getInvolved: "Ku Lug Leh",
+    donate: "Taageero",
+    menu: "Menyu",
+    close: "Xir",
+    home: "Guriga",
+  },
+  hero: {
+    kicker: "Gobolka Wajir · Kampeinika Guddoominimada",
+    name: "Mohamed Abdi Affey",
+    forOffice: "Guddoomiyaha Gobolka Wajir",
+    tagline: "{{FIKRI KAMPEIN — iyo ay tixgeliso}}",
+    lead:
+      "Cuqa Wajir oo fuulay kititaaga Golaha Wakiilada markii uu jir 27 jir, isagoo gaarka qaraniga caruurta arrimaha dibadda, iyo isagoo masharuufa nabad-galada Geesiga Afrika. Hadda adeegta taasu waxay ku celisay guriga.",
+    ctaPrimary: "Eeg rekodka",
+    ctaSecondary: "Ku lug leh",
+    scroll: "Gogol si ay u bilaabdo",
+    placeholderNote:
+      "Fikri kampeinika iyo gacannaanida waa waxyaabahabka fuday oo kula hadlayan.",
+  },
+  credibility: {
+    heading: "Sodon sanadood oo adeega bulshada",
+    items: [
+      { value: "1997", label: "Lagu saxiibaystay Wakilka 27 jir" },
+      { value: "2003", label: "Ergada Kenya ee Somalia" },
+      { value: "Geesiga", label: "Ergada Gaar ah ee UNHCR iyo IGAD" },
+    ],
+  },
+  timeline: {
+    kicker: "Rekodka",
+    heading: "Nolol adeega — laga Wajir ilaa dunida, iyo ku noqoshada",
+    intro:
+      "Wax kasta hoos yaal waxaa laga helay rekodka bulshada ee tixgelsan ee Mohamed Abdi Affey. Waxyaabaha sugaya maaloofnimada yaa hayaan iyo si fudan.",
+    presentLabel: "Hadda",
+    verifiedTag: "Tixgelsan",
+    placeholderTag: "Sugaya maaloofnimada",
+    items: [
+      {
+        id: "born",
+        year: "1968",
+        title: "Lagu dhashay Gobolka Wajir",
+        body: "Mohamed Abdi Affey waxaa lagu dhashay Wajir, waqooyi-xagga gaarka Kenya — gobolka uu hadda doonayo inuu hoggaaminyo.",
+        verified: true,
+      },
+      {
+        id: "mp-wajir-south",
+        year: "1997",
+        title: "Lagu saxiibaystay Wakilka Wajir Koonfur, 27 jir",
+        body: "Mid ka mid ah dadka yar ee ah oo lagu saxiibaystay Golaha Wakiilada Kenya, isagoo KANU. Wuxuu u adeegay ilaa 2002.",
+        verified: true,
+      },
+      {
+        id: "deputy-minister",
+        year: "1997–2002",
+        title: "Naibd Wazir, Arrimaha Dibadda",
+        body: "Wuxuu u adeegay Wasaarada Arrimaha Dibadda Kenya, isagoo bilaabista kazi oo ku dhex jirta siyaasadda qaraniga iyo diplomasiyada caalami.",
+        verified: true,
+      },
+      {
+        id: "ambassador",
+        year: "2003–2007",
+        title: "Ergada Kenya ee Somalia",
+        body: "Wuxuu lagu doortay Madaxweyne Mwai Kibaki oo noqdo Ergada Kenya ee Somalia, wakilka qaraniga dhanka deriska muhiim ah.",
+        verified: true,
+      },
+      {
+        id: "nominated-mp",
+        year: "2008–2013",
+        title: "Wakilka Xeriya ah",
+        body: "Wuxuu ku noqday Golaha oo Wakilka Xeriya ah ee ODM-Kenya.",
+        verified: true,
+      },
+      {
+        id: "igad-envoy",
+        year: "Adeegta",
+        title: "Ergada Gaar ah ee IGAD ee ka shaqo Somalia",
+        body: "Wuxuu u adeegay Ergada Gaar ah ee Somalia ee Aqalka Maamulka Gobolka (IGAD), isagoo wada jira nabad-galadka gobolka.",
+        verified: true,
+      },
+      {
+        id: "unhcr-envoy",
+        year: "Adeegta",
+        title: "Ergada Gaar ah ee UNHCR, Geesiga Afrika",
+        body: "Wuxuu u adeegay Ergada Gaar ah ee UNHCR kwa Geesiga Afrika iyo xaalka aqoonxumada Somaliyeed, isagoo shaqaynaya mid ka mid ah ayaan baab iyo daacad ee aqoonxuma caalamiga ah.",
+        verified: true,
+      },
+      {
+        id: "education",
+        year: "Waxbarashada",
+        title: "Master ee Ilaalinta Khilaafo Caalami",
+        body: "Wuxuu leeyahay Master (Jaamacada Nairobi) iyo Bachelor (Jaamacada Kenyatta). Wuu hadal kara Somali, Ingiliziga iyo Kiswahili.",
+        verified: true,
+      },
+      {
+        id: "governor-run",
+        year: "Hadda",
+        title: "Kandidaatiga Guddoomiyaha Gobolka Wajir",
+        body: "[TBC — tixgeli maalinta dhaafitaanka, xisbiga, kandidaatiga kale iyo aasaasaha kahor oo ay daabacdo.]",
+        verified: false,
+      },
+    ],
+  },
+  common: {
+    langLabel: "Luuqa",
+    placeholderBadge: "Waxyaabaha fuday — waxaa loo baahan thigigeelin",
+    verifiedBadge: "Runta ay tahay",
+  },
+  ui: {
+    status: { verified: "Tixgelsan", draft: "Rasimu", tbc: "Itathibitishwa" },
+    countdown: {
+      label: "Cilliyada illaa codsiga",
+      dateLine: "Agusta 10, 2027 - Saacadda Afrika Mashariqida",
+      days: "Cilliyada",
+      hours: "Saacadaha",
+      minutes: "Daqiqada",
+      seconds: "Ilkoodka",
+      daysShort: "C",
+      hoursShort: "S",
+      minutesShort: "D",
+      secondsShort: "I",
+      passed: "Codsiga waad gudhe dhan",
+    },
+    home: {
+      visionKicker: "Waxyaaraha",
+      visionHeading: "Asha Guud kwa Wajir",
+      seeAllPriorities: "Eeg asha guud oo dhan",
+      draftNotice: "Rasimu — eeg ay ay ku gaareysanayso",
+      readMore: "Akhri badan",
+      storyKicker: "Hadithu",
+      storyHeading: "Laga Wajir ilaa Dunida",
+      readFullStory: "Akhri hadithu oo dhan",
+      portraitAlt: "Sawir la sharaf leh oo Mohamed Abdi Affey",
+      portraitCaption: "Ergada Kenya ee Somalia, 2005",
+      quote: "Runta ay tahay in familiyadahaygu iyo familiyadii ay leeyihiin kiti, iyo codka, meesha ay muuqaalada lagu sameynayo mustaqbalkooda.",
+      quoteAttribution: "Mohamed Abdi Affey",
+      ctaHeading: "Waxku xusuusin muxuu iska dhigaysa?",
+      ctaBody: "Adeega mahadsanidda ilaa hadda — iska waar muxuu iska dhigaysa gobolka?",
+      ctaPrimary: "Barrista diray",
+      ctaSecondary: "Ku lug leh",
+      heroPhotoAlt: "Sawir cuqa ay bulshada shafanta",
+      heroPhotoCaption: "Wajir, 2024",
+      centralPromise: "Wajir Hore, Ilaa Calaacal",
+    },
+    story: {
+      kicker: "Hadithu",
+      title: "Laga Wajir ilaa Dunida, iyo ku noqoshada",
+      imageAlt: "Mohamed Abdi Affey oo ka hadla habraha",
+      photoCaption: "Somaliland, 2014",
+      timelineKicker: "Rekodka",
+      timelineHeading: "Sodon sanadood oo adeega",
+      ctaVision: "Waxyaaraha Wajir",
+      ctaRecord: "Rekodka",
+    },
+    vision: {
+      kicker: "Waxyaaraha",
+      title: "Asha Guud kwa Wajir",
+      intro:
+        "Shan guud kwa Gobolka Wajir — oo lagu saleysan runta noolol gaarka ah, iyo sodon sanadood oo adeegta. Taasu waxay ku hoggaaminayso howsha kampein oo dhisid iyo xoojin gobolkeenna.",
+      imageAlt: "Wajir oo ku jirta taallada Africa",
+      helpHeading: "Kaga qayb gal asha guud",
+      helpBody:
+        "Aasaasaha dhamaystiran waxay lagu sameyn doonaan dad Wajir. Noo sheeg maxaa loo baahan goobaadaada.",
+      helpCtaPriorities: "Barrista asha guud",
+      helpCtaCounty: "Eeg gobolka",
+    },
+    record: {
+      kicker: "Rekodka",
+      title: "Rekodka adeega — goriga iyo dunida",
+      intro:
+        "Wax kasta hoos yaal waxaa laga helay rekodka tixgelsan ee bulshada ee Mohamed Abdi Affey. Waxba waxa fuday haa jiraan; waxyaabaha gobolka sugaya maaloofnimada waa hayaan iyo si fudan.",
+      nationalKicker: "Qaraniga iyo Caalami",
+      educationKicker: "Waxbarashada",
+      languagesKicker: "Luugaha",
+      countyKicker: "Rekodka Gobolka Wajir",
+      ctaStory: "Akhri hadithu oo dhan",
+      ctaVision: "Waxyaaraha Wajir",
+    },
+    wards: {
+      kicker: "Gobolka Wajir",
+      title: "Shan bunge. Gobol mid. Qorshe kasta.",
+      intro:
+        "Wajir waxaa lagu dhisay shan bunge iyo wadi labaatan. Xulo bunge si aad u aragto layni kampeinika — iyo noo sheeg waxaa loo baahan meela aad ku nooshahay.",
+      mapTitle: "Shan bunge, gobol mid",
+      mapCaption:
+        "Waxaa lagu sawir ramadhan bunge gobolka. Mipakan waa muuqaal kaliya — tiibiya data rasmi ee IEBC kahor oo ay daabacdo.",
+      constituencyLabel: "Bunge",
+      population: "Tirada dadka",
+      voters: "Qofka codsiga oo liistada lagu jiro",
+      hqLabel: "Magaalada Wajir — xarumaha guddiga gobolka",
+      whatLivesHereTitle: "Waxaa joogaa halkan",
+      whatLivesHereBody:
+        "Asha bunge, masharuufa socoto, wakilnimada wadi iyo macluumaadka lagu xidhiidhiyey — marka hore lagu daabaco kampein bunge kasta.",
+      mapAria: "Ramadhan la mid ah oo leh shan bunge gobolka Wajir",
+    },
+    news: {
+      kicker: "Wararka & Habraha",
+      title: "Kampeinika gobolka Wajir oo dhan",
+      intro:
+        "Tashriyaadda, wararka warfaafinta iyo habraha walaalo — buluugga, hadalo habraha iyo isku timaaminta kijamii, wadi kasta.",
+      kindNews: "Warka",
+      kindEvent: "Habra",
+      updatesHeading: "Maya maqliin isbedelka",
+      updatesBody:
+        "Listu sida hadbahe ee goobaadaada iyo wararka kampein.",
+      updatesCta: "Ku lug leh kampein",
+    },
+    getInvolved: {
+      kicker: "Ku Lug Leh",
+      title: "Kampein qof walba ee Wajir.",
+      intro:
+        "Tago waktigaaga, codkaaga ama taageertaada. Qayb kasta — saacad talida ama shilin yar oo dedican — waxay gobolka u dhoweeysaa hoggaanka ay leysanayso.",
+      volunteerKicker: "Adeeg Bulshada",
+      volunteerHeading: "Ku dar gacanjaadka harakada.",
+      volunteerBody:
+        "Laga hadal nyumba kwa nyumba illaa bilaabista habar goobaadaada, waxaa jira mesha qof walba. Noo sheeg sidee ay kugu jirtid caasimad iyo aad ku nooshahay.",
+      volunteerBullets: [
+        "Panga iyo hamasi goobaadaada",
+        "Wakilnimada kampein habaro bulshada",
+        "Sida lagu gaarsido qofka codsiga intaaneta iyo intaaneta la dib",
+      ],
+      donateKicker: "Taageero",
+      donateHeading: "Bilaabi kampein.",
+      donateBody:
+        "Taageerta dadka adka waxay kaami u tahay harakada oo midnimad iyo u dhow dadka ay adeegto. Tago waxaad karti kartaa, kwa M-Pesa ama saraf dijitaal.",
+      transparencyTitle: "Tusaale ammaanka",
+      transparencyBody:
+        "Taageerta siyaasada Kenya waxay ku hadhaya sharciga adeegta kampein. Kahor ay bilaabta, waxay tixgelisan doonaan xaddidan taageerta, sharcinimada iyo shahaadaha maliyada la isticmaalo.",
+    },
+    volunteerForm: {
+      fullName: "Magaca buubuhu",
+      phone: "Nambarka telefanka",
+      email: "Imailka (maya-looga-baahan)",
+      constituency: "Bungega aad ku nooshahay",
+      selectPlaceholder: "Xulo…",
+      howHelp: "Sidee ay kugu jirtid caasimad?",
+      interests: [
+        "Talida nyumba kwa nyumba",
+        "Bilaabista habar goobaad",
+        "Shabakada kijamii",
+        "Habarro iyo habka",
+        "Hamasi yurub",
+        "Shabakada gabar",
+      ],
+      submit: "Ku lug leh kampein",
+      demoNote:
+        "Forumaad tijaabo — ma jiro xidhiidhka nidaama nyuma. Macluumaadka waxaa waxa la dhowrayo ama la dirayo.",
+      thanksHeading: "Waad mahadsan tahay si aad u wada jirtid.",
+      thanksBody:
+        "Taasu waa taariikhda tijaabo — forumaadku ma jiro xidhiidhka nidaama nyuma. Xidhiidhka nidaamka CRM / adeegta imbaaila si ay bilaabato soo urur liistada dhabarka.",
+      submitAnother: "Soo gal jawab kale",
+    },
+    donate: {
+      mpesa: "M-Pesa",
+      crypto: "Crypto",
+      methodAria: "Habka lagu bixiyo",
+      chooseAmount: "Xulo kiisa (KES)",
+      other: "Kale",
+      customAria: "Kisa aad leedahay KES",
+      mpesaPhone: "Nambarka M-Pesa telefanka",
+      mpesaPlaceholder: "mf. 0712 345 678",
+      mpesaPaybill: "Paybill: 008008",
+      mpesaAccount: "Akaunti: MA-008",
+      mpesaPrompt: "Tuma ujumbe",
+      stkPush: "Tuma STK push",
+      stkNote: "Waxaad helaysaa ujumbe telefankaan oo lagu soo sheegto M-Pesa PIN-kaaga.",
+      cryptoAddress: "Ciwaanka saraf dijitaal",
+      cryptoNote: "Taga taageerto anwani wallet kampeinika. Bitcoin, Ethereum iyo saraf yar kale waa la qabaa.",
+      notLiveTitle: "Hadda lama jiro si rasmi ah.",
+      notLiveBody:
+        "Taasu waa adeegta taageerta kaliya. Miamalo dhabarka lagu baahan xidhiidhka nidaama nyuma iyo shahaadaha aad — Safaricom Daraja API (STK push M-Pesa) iyo xidhiidhka wallet saraf dijitaal — iyo isaga walaliyaysiinta sharciga adeegta kampein Kenya. Waxa lagu bixi waayo.",
+    },
+    footer: {
+      tagline:
+        "Rekodka adeega gobolka Kenya iyo Geesiga Afrika — hadda guriga. Waxaa lagu dhisay dadka Gobolka Wajir.",
+      explore: "Eeg",
+      takePart: "Qayb gal",
+      volunteer: "Adeeg Bulshada",
+      donate: "Taageero",
+      findConstituency: "Hel bungega aad ku nooshahay",
+      copyright: "Kampein Mohamed Abdi Affey. Gobo isdhaabaya.",
+      disclaimer:
+        "Goboka rasimu — waxyaaraha aysan fasaxan \"Rasimu\" ama \"Iyo iyo ay ay ku gaareysanayso\" siyo waxyaabaha iska dhamaystiran iyo must la tixgeliso kahor daabaca. Sawirka waa waxyaabaha waqti le'eg/sawir bariis.",
+      skipToContent: "Iska gal waxyaaraha",
+    },
+  },
+};
+
 export const dictionaries: Record<Locale, Dictionary> = {
   en,
   sw,
-  // Somali not yet translated — falls back to English at runtime.
-  so: en,
+  so,
 };
 
 export function getDictionary(locale: Locale): Dictionary {

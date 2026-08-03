@@ -7,7 +7,7 @@ export const ALL_LOCALES = ["en", "sw", "so"] as const;
 export type Locale = (typeof ALL_LOCALES)[number];
 
 // Locales the toggle currently exposes to voters.
-export const ACTIVE_LOCALES: Locale[] = ["en", "sw"];
+export const ACTIVE_LOCALES: Locale[] = ["en", "sw", "so"];
 
 export const DEFAULT_LOCALE: Locale = "en";
 
