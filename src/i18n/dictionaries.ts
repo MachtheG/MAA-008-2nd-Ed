@@ -194,23 +194,20 @@ export type UiCopy = {
   };
   donate: {
     mpesa: string;
-    card: string;
-    paypal: string;
+    crypto: string;
     methodAria: string;
     chooseAmount: string;
     other: string;
     customAria: string;
     mpesaPhone: string;
     mpesaPlaceholder: string;
+    mpesaPaybill: string;
+    mpesaAccount: string;
+    mpesaPrompt: string;
     stkPush: string;
     stkNote: string;
-    cardNumber: string;
-    expiry: string;
-    cvc: string;
-    donateAmount: string;
-    cardNote: string;
-    paypalPay: string;
-    paypalNote: string;
+    cryptoAddress: string;
+    cryptoNote: string;
     notLiveTitle: string;
     notLiveBody: string;
   };
@@ -475,7 +472,7 @@ const en: Dictionary = {
       donateKicker: "Donate",
       donateHeading: "Power the campaign.",
       donateBody:
-        "Grassroots support keeps this movement independent and close to the people it serves. Give what you can, by M-Pesa, card or PayPal.",
+        "Grassroots support keeps this movement independent and close to the people it serves. Give what you can, by M-Pesa or cryptocurrency.",
       transparencyTitle: "A note on transparency",
       transparencyBody:
         "Political donations in Kenya are subject to campaign-finance law. Before going live we'll confirm contribution limits, disclosure requirements and the payment credentials to use.",
@@ -505,28 +502,23 @@ const en: Dictionary = {
     },
     donate: {
       mpesa: "M-Pesa",
-      card: "Card",
-      paypal: "PayPal",
+      crypto: "Crypto",
       methodAria: "Payment method",
       chooseAmount: "Choose an amount (KES)",
       other: "Other",
       customAria: "Custom amount in KES",
       mpesaPhone: "M-Pesa phone number",
       mpesaPlaceholder: "e.g. 0712 345 678",
+      mpesaPaybill: "Paybill: 008008",
+      mpesaAccount: "Account: MA-008",
+      mpesaPrompt: "Send prompt",
       stkPush: "Send STK push",
       stkNote: "You'll receive a prompt on your phone to enter your M-Pesa PIN.",
-      cardNumber: "Card number",
-      expiry: "MM / YY",
-      cvc: "CVC",
-      donateAmount: "Donate",
-      cardNote:
-        "Card fields are illustrative — integrate a PCI-compliant processor.",
-      paypalPay: "Pay with PayPal",
-      paypalNote:
-        "Redirects to PayPal once a business account & SDK keys are configured.",
+      cryptoAddress: "Cryptocurrency address",
+      cryptoNote: "Send donations to the campaign wallet address. Bitcoin, Ethereum and other major cryptocurrencies accepted.",
       notLiveTitle: "Not yet live.",
       notLiveBody:
-        "This is the donation experience only. Real transactions need backend integration & credentials from you — Safaricom Daraja API (M-Pesa STK push), a card processor (e.g. Stripe/Flutterwave), and a PayPal business account — plus compliance with Kenyan campaign-finance rules. Nothing is charged.",
+        "This is the donation experience only. Real transactions need backend integration & credentials from you — Safaricom Daraja API (M-Pesa STK push) and cryptocurrency wallet integration — plus compliance with Kenyan campaign-finance rules. Nothing is charged.",
     },
     footer: {
       tagline:
@@ -791,7 +783,7 @@ const sw: Dictionary = {
       donateKicker: "Changia",
       donateHeading: "Iwezeshe kampeni.",
       donateBody:
-        "Msaada wa mashinani unaifanya harakati hii kuwa huru na karibu na watu inaowahudumia. Toa unachoweza, kwa M-Pesa, kadi au PayPal.",
+        "Msaada wa mashinani unaifanya harakati hii kuwa huru na karibu na watu inaowahudumia. Toa unachoweza, kwa M-Pesa au sarafu za dijitali.",
       transparencyTitle: "Kumbuka kuhusu uwazi",
       transparencyBody:
         "Michango ya kisiasa nchini Kenya inasimamiwa na sheria ya fedha za kampeni. Kabla ya kuanza rasmi tutathibitisha kikomo cha michango, mahitaji ya kutoa taarifa na hati za malipo za kutumia.",
@@ -821,28 +813,23 @@ const sw: Dictionary = {
     },
     donate: {
       mpesa: "M-Pesa",
-      card: "Kadi",
-      paypal: "PayPal",
+      crypto: "Crypto",
       methodAria: "Njia ya malipo",
       chooseAmount: "Chagua kiasi (KES)",
       other: "Nyingine",
       customAria: "Kiasi chako mwenyewe kwa KES",
       mpesaPhone: "Nambari ya simu ya M-Pesa",
       mpesaPlaceholder: "mf. 0712 345 678",
+      mpesaPaybill: "Paybill: 008008",
+      mpesaAccount: "Akaunti: MA-008",
+      mpesaPrompt: "Tuma ujumbe",
       stkPush: "Tuma ombi la STK",
       stkNote: "Utapokea ujumbe kwenye simu yako wa kuweka PIN yako ya M-Pesa.",
-      cardNumber: "Nambari ya kadi",
-      expiry: "MM / YY",
-      cvc: "CVC",
-      donateAmount: "Changia",
-      cardNote:
-        "Sehemu za kadi ni za mfano — unganisha mfumo wa malipo unaokidhi viwango vya PCI.",
-      paypalPay: "Lipa kwa PayPal",
-      paypalNote:
-        "Inaelekeza PayPal mara akaunti ya biashara na funguo za SDK zitakapowekwa.",
+      cryptoAddress: "Anwani ya sarafu za dijitali",
+      cryptoNote: "Tuma michango kwa anwani ya mkpok wa kampeni. Bitcoin, Ethereum na sarafu nyingine kuu zinakubaliwa.",
       notLiveTitle: "Bado haijaanza rasmi.",
       notLiveBody:
-        "Hii ni hali ya kuchangia pekee. Miamala halisi inahitaji uunganishaji wa mfumo wa nyuma na hati kutoka kwako — Safaricom Daraja API (ombi la STK la M-Pesa), mfumo wa kadi (mf. Stripe/Flutterwave), na akaunti ya biashara ya PayPal — pamoja na kufuata sheria za fedha za kampeni za Kenya. Hakuna kinachotozwa.",
+        "Hii ni hali ya kuchangia pekee. Miamala halisi inahitaji uunganishaji wa mfumo wa nyuma na hati kutoka kwako — Safaricom Daraja API (ombi la STK la M-Pesa) na unganisho la mkpok wa sarafu za dijitali — pamoja na kufuata sheria za fedha za kampeni za Kenya. Hakuna kinachotozwa.",
     },
     footer: {
       tagline:

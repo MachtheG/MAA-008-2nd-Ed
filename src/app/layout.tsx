@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/i18n/LanguageProvider";
+import { ThemeProvider } from "@/i18n/ThemeProvider";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SkipLink } from "@/components/SkipLink";
@@ -42,16 +43,19 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${fraunces.variable} ${inter.variable} h-full antialiased`}
+      data-theme="light"
     >
-      <body className="flex min-h-full flex-col overflow-x-hidden bg-sand-50 text-ink-900">
-        <LanguageProvider>
-          <SkipLink />
-          <SiteHeader />
-          <main id="main" className="flex-1">
-            {children}
-          </main>
-          <SiteFooter />
-        </LanguageProvider>
+      <body className="flex min-h-full flex-col overflow-x-hidden bg-sand-50 text-ink-900 transition-colors duration-300 dark:bg-ink-950 dark:text-sand-50">
+        <ThemeProvider>
+          <LanguageProvider>
+            <SkipLink />
+            <SiteHeader />
+            <main id="main" className="flex-1">
+              {children}
+            </main>
+            <SiteFooter />
+          </LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

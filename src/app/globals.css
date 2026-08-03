@@ -60,6 +60,53 @@
 :root {
   --background: var(--color-sand-50);
   --foreground: var(--color-ink-900);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0805;
+    --foreground: var(--color-sand-50);
+    color-scheme: dark;
+  }
+}
+
+[data-theme="dark"] {
+  --background: #0a0805;
+  --foreground: var(--color-sand-50);
+  color-scheme: dark;
+
+  --color-sand-50: #16120a;
+  --color-sand-100: #1f1a11;
+  --color-sand-200: #2a251a;
+  --color-sand-300: #3d362a;
+  --color-sand-400: #4f473a;
+
+  --color-ink-900: #f8f4ec;
+  --color-ink-800: #e6dcc9;
+  --color-ink-700: #c2ad87;
+  --color-ink-600: #a8986f;
+  --color-ink-500: #8c8272;
+  --color-ink-400: #6b6153;
+  --color-ink-300: #4f463a;
+
+  --color-line: rgba(248, 244, 236, 0.12);
+  --color-line-strong: rgba(248, 244, 236, 0.22);
+
+  --color-ochre-300: #e6c583;
+  --color-ochre-400: #d9a94f;
+  --color-ochre-500: #c68a2a;
+  --color-ochre-600: #a56d1c;
+
+  --color-flag-green: #1a9868;
+  --color-flag-green-dark: #0d6a4c;
+  --color-flag-green-deep: #063c2b;
+}
+
+[data-theme="light"] {
+  --background: var(--color-sand-50);
+  --foreground: var(--color-ink-900);
+  color-scheme: light;
 }
 
 @layer base {

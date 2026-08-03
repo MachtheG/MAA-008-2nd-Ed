@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { navRoutes } from "@/lib/nav";
 import { LanguageToggle } from "./LanguageToggle";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function SiteHeader() {
   const { t } = useLanguage();
@@ -93,9 +94,9 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex shrink-0 items-center gap-2">
-          {/* Language switch stays reachable at every width — it is the whole
-              point of the Kiswahili translation. */}
+          {/* Language and theme toggles stay reachable at every width */}
           <LanguageToggle />
+          <ThemeToggle />
           <Link
             href="/get-involved#donate"
             className="hidden rounded-full bg-flag-red px-4 py-2 text-sm font-semibold text-sand-50 shadow-sm transition-transform hover:-translate-y-0.5 sm:inline-block"
