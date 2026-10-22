@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Fraunces, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/i18n/LanguageProvider";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -13,9 +13,13 @@ const fraunces = Fraunces({
   axes: ["opsz"],
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+// IBM Plex Sans in place of a default Inter/Roboto/Arial stack — a
+// deliberate, slightly technical body face (built for a telecom, not a
+// SaaS template) that pairs with Fraunces without reading as generated.
+const plexSans = IBM_Plex_Sans({
+  variable: "--font-plex-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -41,7 +45,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${inter.variable} h-full antialiased`}
+      className={`${fraunces.variable} ${plexSans.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col overflow-x-hidden bg-sand-50 text-ink-900">
         <LanguageProvider>

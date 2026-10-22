@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { navRoutes } from "@/lib/nav";
 import { LanguageToggle } from "./LanguageToggle";
+import { ElectionCountdownBar } from "./ElectionCountdown";
 
 export function SiteHeader() {
   const { t } = useLanguage();
@@ -35,14 +36,17 @@ export function SiteHeader() {
   }));
 
   return (
-    <header
-      className={`sticky top-0 z-50 border-b transition-colors duration-300 ${
-        scrolled
-          ? "border-line bg-sand-50/90 backdrop-blur-md"
-          : "border-line bg-sand-50"
-      }`}
-    >
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-3 sm:gap-8 sm:px-8 sm:py-4 lg:py-4">
+    <header className="sticky top-0 z-50">
+      {/* Present on every page, not just the home countdown feature */}
+      <ElectionCountdownBar />
+      <div
+        className={`border-b transition-colors duration-300 ${
+          scrolled
+            ? "border-line bg-sand-50/90 backdrop-blur-md"
+            : "border-line bg-sand-50"
+        }`}
+      >
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-4 py-3 sm:gap-8 sm:px-8 sm:py-4 lg:py-4">
         {/* Brand */}
         <Link
           href="/"
@@ -58,7 +62,7 @@ export function SiteHeader() {
             className="h-9 w-9 shrink-0 rounded-md object-cover shadow-sm ring-1 ring-flag-green-dark/30 sm:h-10 sm:w-10"
           />
           <span className="min-w-0 leading-tight">
-            <span className="block truncate font-display text-base font-semibold tracking-tight text-ink-900 sm:text-lg">
+            <span className="block truncate font-display text-sm font-semibold tracking-tight text-ink-900 sm:text-lg">
               {/* Compact wordmark on mobile, full name from sm up */}
               <span className="sm:hidden">AFFEY</span>
               <span className="hidden sm:inline">MOHAMED ABDI AFFEY</span>
@@ -93,9 +97,9 @@ export function SiteHeader() {
         </nav>
 
         {/* Right section - Language, Donate, Menu */}
-        <div className="flex shrink-0 items-center gap-2.5 sm:gap-3">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
           {/* Language toggle stays reachable at every width */}
-          <LanguageToggle />
+          <LanguageToggle className="shrink-0" />
           <Link
             href="/get-involved#donate"
             className="hidden rounded-full bg-flag-red px-5 py-2 text-sm font-semibold text-sand-50 shadow-sm transition-transform hover:-translate-y-0.5 lg:inline-block"
@@ -108,7 +112,7 @@ export function SiteHeader() {
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls="mobile-menu"
-            className="grid h-10 w-10 shrink-0 place-items-center rounded-md border border-line-strong bg-sand-100 text-ink-800 transition-colors hover:bg-ink-900/5 sm:h-10 sm:w-10 lg:hidden"
+            className="grid h-9 w-9 shrink-0 place-items-center rounded-md border border-line-strong bg-sand-100 text-ink-800 transition-colors hover:bg-ink-900/5 sm:h-10 sm:w-10 lg:hidden"
           >
             <span className="sr-only">{open ? t.nav.close : t.nav.menu}</span>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -165,6 +169,7 @@ export function SiteHeader() {
           </nav>
         </div>
       )}
+      </div>
     </header>
   );
 }

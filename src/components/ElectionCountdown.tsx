@@ -33,10 +33,13 @@ function remainingFrom(target: number, now: number): Remaining {
   };
 }
 
-export function ElectionCountdown() {
-  const { t } = useLanguage();
-  // `null` until mounted: the server has no stable "now", so we render a
-  // fixed-height skeleton instead of a mismatched value. Keeps layout steady.
+/**
+ * Shared ticking state for both the full card and the slim header bar.
+ * `null` until mounted: the server has no stable "now", so each consumer
+ * renders a steady placeholder instead of a value that would mismatch on
+ * hydration.
+ */
+function useElectionCountdown(): Remaining | null {
   const [time, setTime] = useState<Remaining | null>(null);
 
   useEffect(() => {
@@ -47,6 +50,14 @@ export function ElectionCountdown() {
     return () => clearInterval(id);
   }, []);
 
+  return time;
+}
+
+/** Full feature card — used once, as the centrepiece on the home page. */
+export function ElectionCountdown() {
+  const { t } = useLanguage();
+  const time = useElectionCountdown();
+
   const units = [
     { key: "d", value: time?.days, label: t.ui.countdown.days },
     { key: "h", value: time?.hours, label: t.ui.countdown.hours },
@@ -55,7 +66,7 @@ export function ElectionCountdown() {
   ];
 
   return (
-    <div className="rounded-2xl border border-line bg-linear-to-br from-flag-green/[0.07] to-ochre-400/[0.07] p-4 sm:p-6 lg:p-8">
+    <div className="border border-line bg-sand-50 p-4 sm:p-6 lg:p-8">
       <div className="text-center">
         <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-flag-green-dark sm:text-xs sm:tracking-[0.16em]">
           {t.ui.countdown.label}
@@ -72,23 +83,74 @@ export function ElectionCountdown() {
           {units.map((u) => (
             <div
               key={u.key}
-              className="min-w-0 rounded-xl bg-sand-50 px-1 py-3 text-center sm:px-2 sm:py-4"
+              className="min-w-0 border border-line bg-ink-900 px-1 py-3 text-center sm:px-2 sm:py-4"
             >
               <div
-                className="font-display text-[1.6rem] font-semibold leading-none tabular-nums text-flag-green-dark sm:text-4xl"
+                className="font-display text-[1.6rem] font-semibold leading-none tabular-nums text-ochre-300 sm:text-4xl"
                 // Reserve the digits' width before hydration so nothing jumps.
                 suppressHydrationWarning
               >
                 {u.value === undefined ? "––" : String(u.value).padStart(2, "0")}
               </div>
               {/* Labels shrink rather than wrap on the narrowest phones */}
-              <div className="mt-1.5 truncate text-[0.6rem] font-medium uppercase tracking-tight text-ink-600 sm:mt-2 sm:text-xs sm:tracking-wide">
+              <div className="mt-1.5 truncate text-[0.6rem] font-medium uppercase tracking-tight text-sand-100/60 sm:mt-2 sm:text-xs sm:tracking-wide">
                 {u.label}
               </div>
             </div>
           ))}
         </div>
       )}
+    </div>
+  );
+}
+
+/**
+ * One-line strip for the site header — present on every page. Deliberately
+ * plain (a flat rule, tabular digits, no gradient or glass) so it reads as
+ * a fixed instrument rather than a promotional banner.
+ */
+export function ElectionCountdownBar() {
+  const { t } = useLanguage();
+  const time = useElectionCountdown();
+
+  if (time?.passed) {
+    return (
+      <div className="border-b border-flag-green-deep bg-flag-green-dark px-4 py-1.5 text-center text-xs font-semibold text-sand-50 sm:text-sm">
+        {t.ui.countdown.passed}
+      </div>
+    );
+  }
+
+  const units = [
+    { key: "d", value: time?.days, label: t.ui.countdown.days },
+    { key: "h", value: time?.hours, label: t.ui.countdown.hours },
+    { key: "m", value: time?.minutes, label: t.ui.countdown.minutes },
+    { key: "s", value: time?.seconds, label: t.ui.countdown.seconds },
+  ];
+
+  return (
+    <div className="border-b border-flag-green-deep bg-flag-green-dark text-sand-50">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-2 gap-y-1 px-4 py-1.5 text-center sm:justify-between sm:px-8">
+        <span className="hidden text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-sand-100/80 sm:inline">
+          {t.ui.countdown.label}
+        </span>
+        <span
+          className="flex items-baseline gap-1 text-xs font-semibold tabular-nums sm:text-sm"
+          suppressHydrationWarning
+        >
+          {units.map((u, i) => (
+            <span key={u.key} className="flex items-baseline gap-1">
+              {i > 0 && <span className="text-sand-100/50">·</span>}
+              <span className="text-ochre-300">
+                {u.value === undefined ? "––" : String(u.value).padStart(2, "0")}
+              </span>
+              <span className="text-[0.65rem] font-medium normal-case text-sand-100/70">
+                {u.label.slice(0, 1).toLowerCase()}
+              </span>
+            </span>
+          ))}
+        </span>
+      </div>
     </div>
   );
 }

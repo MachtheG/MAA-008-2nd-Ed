@@ -9,12 +9,12 @@ import { Button } from "@/components/ui/Button";
 /**
  * Home hero.
  *
- * The portrait (MohamedA04) is only 533 × 299px, so it is deliberately NOT
- * used as a full-bleed `fill` background — stretching it to 100vw would
- * upscale it ~4× and destroy it. Instead it renders inside a capped frame
- * (max 30rem) where it sits at roughly native resolution and stays sharp,
- * while a heavily blurred copy provides the warm atmospheric wash behind.
- * Blur hides the upscaling entirely, so no clarity is lost anywhere.
+ * Background: a real landscape photograph (acacia.jpg — see
+ * public/images/CREDITS.md; it is Unsplash stock, not a photo of Wajir
+ * itself, so it should be swapped for campaign photography of the county
+ * before launch), not a blur or a gradient wash. Overlay is a single flat
+ * scrim, strong enough to hold the type legible without softening the
+ * photo into mush — the point is a real place, not atmosphere.
  */
 export function HomeHero() {
   const { t } = useLanguage();
@@ -22,28 +22,27 @@ export function HomeHero() {
 
   return (
     <section className="relative isolate overflow-hidden bg-ink-900 text-sand-50">
-      {/* Atmospheric wash — blurred, so low resolution is invisible */}
       <Image
-        src="/images/MohamedA04.jpeg"
+        src="/images/acacia.jpg"
         alt=""
         aria-hidden="true"
         fill
         priority
         sizes="100vw"
-        className="scale-125 object-cover object-center opacity-30 blur-2xl"
+        quality={90}
+        className="object-cover object-[center_65%]"
       />
+      {/* Flat scrim, strongest where the type sits, clear toward the horizon */}
       <div
-        className="absolute inset-0 bg-linear-to-t from-ink-900 via-ink-900/85 to-ink-900/70"
+        className="absolute inset-0 bg-linear-to-t from-ink-900 via-ink-900/75 to-ink-900/25"
         aria-hidden="true"
       />
-      <div className="absolute inset-0 bg-topo opacity-[0.12]" aria-hidden="true" />
 
-      <Container className="relative py-14 sm:py-20 lg:py-24">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
+      <Container className="relative py-14 sm:py-20 lg:py-28">
+        <div className="grid items-end gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
           {/* Copy */}
           <div className="max-w-2xl">
-            <p className="inline-flex items-center gap-2.5 rounded-full border border-sand-50/25 bg-sand-50/5 px-3.5 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-sand-100 backdrop-blur-sm sm:text-xs sm:tracking-[0.16em]">
-              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-ochre-400" />
+            <p className="flex items-center gap-2.5 border-l-2 border-ochre-400 pl-3 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-sand-100 sm:text-xs sm:tracking-[0.16em]">
               {t.hero.kicker}
             </p>
 
@@ -66,8 +65,8 @@ export function HomeHero() {
               {t.hero.lead}
             </p>
 
-            {/* Campaign slogan */}
-            <div className="mt-5 inline-flex flex-wrap items-center gap-x-2.5 gap-y-1 rounded-lg border border-ochre-400/30 bg-ochre-400/10 px-3.5 py-2.5 text-sm backdrop-blur-sm sm:mt-6">
+            {/* Campaign slogan — a solid card, not a glass pill */}
+            <div className="mt-5 inline-flex flex-wrap items-center gap-x-2.5 gap-y-1 border-l-2 border-ochre-400 bg-ink-900/60 py-2.5 pl-3.5 pr-4 text-sm sm:mt-6">
               <span className="font-semibold text-ochre-300">
                 {t.ui.home.centralPromise}
               </span>
@@ -96,7 +95,7 @@ export function HomeHero() {
 
           {/* Photograph — capped so it renders at ~native resolution */}
           <figure className="relative mx-auto w-full max-w-120 lg:mx-0">
-            <div className="relative aspect-video overflow-hidden rounded-2xl ring-1 ring-sand-50/20 shadow-2xl">
+            <div className="relative aspect-video overflow-hidden rounded-lg ring-1 ring-sand-50/25 shadow-2xl">
               <Image
                 src="/images/MohamedA04.jpeg"
                 alt={t.ui.home.heroPhotoAlt}
@@ -110,7 +109,7 @@ export function HomeHero() {
             {/* Flag rule under the frame */}
             <span
               aria-hidden="true"
-              className="mt-3 block h-1 w-24 rounded-full bg-linear-to-r from-flag-black via-flag-red to-flag-green"
+              className="mt-3 block h-1 w-24 bg-linear-to-r from-flag-black via-flag-red to-flag-green"
             />
             <figcaption className="mt-2.5 text-sm text-sand-100/70">
               {t.ui.home.heroPhotoCaption}
@@ -119,9 +118,9 @@ export function HomeHero() {
         </div>
 
         {/* At-a-glance strip */}
-        <dl className="mt-12 grid gap-px overflow-hidden rounded-xl border border-sand-50/15 bg-sand-50/10 sm:mt-14 sm:grid-cols-3">
+        <dl className="mt-12 grid gap-px overflow-hidden border border-sand-50/20 bg-sand-50/15 sm:mt-14 sm:grid-cols-3">
           {t.credibility.items.map((item, i) => (
-            <div key={i} className="bg-ink-900/50 px-5 py-5 backdrop-blur-sm">
+            <div key={i} className="bg-ink-900/70 px-5 py-5">
               <dt className="font-display text-2xl font-semibold text-ochre-300 sm:text-3xl">
                 {item.value}
               </dt>
