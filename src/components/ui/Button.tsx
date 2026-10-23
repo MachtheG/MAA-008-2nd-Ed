@@ -1,33 +1,42 @@
 import Link from "next/link";
 import { type ReactNode } from "react";
 
-type Variant = "solid" | "outline" | "ghost" | "gold";
+type Variant = "primary" | "accent" | "ghost-on-dark" | "urgent";
 type Size = "md" | "lg";
 
+/**
+ * One button shape, decided once (taste-skill law): square corners, flat
+ * fill, no shadow at rest or on hover. `accent` spends the one accent
+ * colour the proportion rule allows (colour.md §3) — use it for at most
+ * one action per screen. For a secondary action, prefer `TextLink`
+ * instead of a second button variant; the direction's own blueprints
+ * mostly use "no button, the underlined phrase is the action."
+ */
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-200 focus-visible:outline-3 focus-visible:outline-offset-2 disabled:opacity-50";
+  "inline-flex items-center justify-center gap-2 font-medium transition-[background-color,transform] duration-200 ease-out active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-50";
 
 const variants: Record<Variant, string> = {
-  solid:
-    "bg-ink-900 text-sand-50 hover:bg-ink-800 hover:-translate-y-0.5 shadow-sm",
-  gold: "bg-ochre-500 text-ink-900 hover:bg-ochre-400 hover:-translate-y-0.5 shadow-sm",
-  outline:
-    "border border-ink-900/25 text-ink-900 hover:bg-ink-900/5 hover:border-ink-900/40",
-  ghost: "text-ink-800 hover:bg-ink-900/5",
+  primary: "bg-ink text-bg hover:bg-ink-800",
+  accent: "bg-accent text-accent-ink hover:bg-flag-green",
+  "ghost-on-dark": "bg-transparent text-sand-50 ring-1 ring-sand-50/40 hover:ring-sand-50/70",
+  /** Donate — flag-red is reserved for urgency marks (DESIGN.md Restraint
+   * Rule); one persistent button is the mark, not a wash. */
+  urgent: "bg-flag-red text-sand-50 hover:bg-flag-red/90",
 };
 
 const sizes: Record<Size, string> = {
-  md: "px-5 py-2.5 text-sm",
-  lg: "px-7 py-3.5 text-base",
+  md: "min-h-11 px-5 text-[0.95rem]",
+  lg: "min-h-12 px-7 text-base",
 };
 
 export function Button({
   href,
   children,
-  variant = "solid",
+  variant = "primary",
   size = "md",
   className = "",
   external = false,
+  onClick,
 }: {
   href: string;
   children: ReactNode;
@@ -35,17 +44,18 @@ export function Button({
   size?: Size;
   className?: string;
   external?: boolean;
+  onClick?: () => void;
 }) {
   const cls = `${base} ${variants[variant]} ${sizes[size]} ${className}`;
   if (external) {
     return (
-      <a href={href} target="_blank" rel="noopener noreferrer" className={cls}>
+      <a href={href} target="_blank" rel="noopener noreferrer" className={cls} onClick={onClick}>
         {children}
       </a>
     );
   }
   return (
-    <Link href={href} className={cls}>
+    <Link href={href} className={cls} onClick={onClick}>
       {children}
     </Link>
   );

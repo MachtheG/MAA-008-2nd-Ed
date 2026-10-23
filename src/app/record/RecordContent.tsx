@@ -120,8 +120,8 @@ export function RecordContent() {
           </div>
 
           <div className="mt-10 flex flex-wrap gap-3 lg:mt-12">
-            <Button href="/story" variant="outline">{t.ui.record.ctaStory}</Button>
-            <Button href="/vision" variant="gold">{t.ui.record.ctaVision}</Button>
+            <Button href="/story" variant="primary">{t.ui.record.ctaStory}</Button>
+            <Button href="/vision" variant="accent">{t.ui.record.ctaVision}</Button>
           </div>
         </Container>
       </section>

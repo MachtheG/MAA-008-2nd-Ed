@@ -174,6 +174,31 @@
   }
 }
 
+/* Page-to-page transitions (motion.md "Page to page"): the old page
+   fades quickly, the new one rises in. No library, no full-screen
+   curtain — the browser's own View Transitions API, with a plain
+   navigation as the fallback where it is unsupported. */
+@view-transition {
+  navigation: auto;
+}
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+}
+::view-transition-old(root) {
+  animation: vt-leave var(--duration-fast) var(--ease-out-quart) both;
+}
+::view-transition-new(root) {
+  animation: vt-arrive var(--duration-base) var(--ease-out-expo) 60ms both;
+}
+@keyframes vt-leave {
+  to { opacity: 0; }
+}
+@keyframes vt-arrive {
+  from { opacity: 0; transform: translateY(16px); }
+}
+
 /* ---------- Utilities ---------- */
 
 @utility text-balance { text-wrap: balance; }

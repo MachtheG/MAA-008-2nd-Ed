@@ -8,7 +8,7 @@ export function LanguageToggle({ className = "" }: { className?: string }) {
 
   return (
     <div
-      className={`inline-flex items-center rounded-full border border-ink-900/15 bg-sand-50/70 p-0.5 backdrop-blur ${className}`}
+      className={`inline-flex items-center bg-surface p-0.5 ${className}`}
       role="group"
       aria-label={t.common.langLabel}
     >
@@ -20,10 +20,8 @@ export function LanguageToggle({ className = "" }: { className?: string }) {
             type="button"
             onClick={() => setLocale(l)}
             aria-pressed={active}
-            className={`rounded-full px-2 py-1 text-[0.7rem] font-semibold tracking-wide transition-colors sm:px-3 sm:text-xs ${
-              active
-                ? "bg-flag-green text-sand-50"
-                : "text-ink-700 hover:bg-ink-900/5"
+            className={`px-2 py-1.5 text-xs font-semibold transition-colors sm:px-3 sm:text-sm ${
+              active ? "bg-flag-green text-sand-50" : "text-ink-700 hover:bg-ink/5"
             }`}
           >
             <span aria-hidden="true">{LOCALE_SHORT[l]}</span>

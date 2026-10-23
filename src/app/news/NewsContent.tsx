@@ -58,7 +58,7 @@ export function NewsContent() {
               {t.ui.news.updatesBody}
             </p>
             <div className="mt-6">
-              <Button href="/get-involved" variant="gold">
+              <Button href="/get-involved" variant="accent">
                 {t.ui.news.updatesCta}
               </Button>
             </div>

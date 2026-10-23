@@ -8,6 +8,7 @@ import { useLanguage } from "@/i18n/LanguageProvider";
 import { navRoutes } from "@/lib/nav";
 import { LanguageToggle } from "./LanguageToggle";
 import { ElectionCountdownBar } from "./ElectionCountdown";
+import { Button } from "./ui/Button";
 
 export function SiteHeader() {
   const { t } = useLanguage();
@@ -40,10 +41,8 @@ export function SiteHeader() {
       {/* Present on every page, not just the home countdown feature */}
       <ElectionCountdownBar />
       <div
-        className={`border-b transition-colors duration-300 ${
-          scrolled
-            ? "border-line bg-sand-50/90 backdrop-blur-md"
-            : "border-line bg-sand-50"
+        className={`transition-colors duration-200 ${
+          scrolled ? "bg-surface" : "bg-bg"
         }`}
       >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-4 py-3 sm:gap-8 sm:px-8 sm:py-4 lg:py-4">
@@ -59,7 +58,7 @@ export function SiteHeader() {
             width={40}
             height={40}
             priority
-            className="h-9 w-9 shrink-0 rounded-md object-cover shadow-sm ring-1 ring-flag-green-dark/30 sm:h-10 sm:w-10"
+            className="h-9 w-9 shrink-0 object-cover sm:h-10 sm:w-10"
           />
           <span className="min-w-0 leading-tight">
             <span className="block truncate font-display text-sm font-semibold tracking-tight text-ink-900 sm:text-lg">
@@ -68,7 +67,7 @@ export function SiteHeader() {
               <span className="hidden sm:inline">MOHAMED ABDI AFFEY</span>
             </span>
             {/* Short form on phones so it never truncates mid-word */}
-            <span className="mt-1 block text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-flag-green-dark sm:text-[0.7rem] sm:tracking-[0.15em]">
+            <span className="mt-0.5 block text-xs font-medium text-flag-green-dark sm:text-sm">
               <span className="sm:hidden">{t.nav.brandLine2}</span>
               <span className="hidden sm:inline">{t.hero.forOffice}</span>
             </span>
@@ -82,7 +81,7 @@ export function SiteHeader() {
               key={l.href}
               href={l.href}
               aria-current={l.active ? "page" : undefined}
-              className={`relative rounded-md px-3.5 py-2 text-sm font-medium transition-colors ${
+              className={`relative px-3.5 py-2 text-sm font-medium transition-colors ${
                 l.active
                   ? "text-flag-green-dark"
                   : "text-ink-600 hover:text-ink-900"
@@ -90,7 +89,7 @@ export function SiteHeader() {
             >
               {l.label}
               {l.active && (
-                <span className="absolute inset-x-3.5 -bottom-1 h-0.5 rounded-full bg-flag-green" />
+                <span className="absolute inset-x-3.5 -bottom-1 h-1 bg-flag-green" />
               )}
             </Link>
           ))}
@@ -100,19 +99,21 @@ export function SiteHeader() {
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
           {/* Language toggle stays reachable at every width */}
           <LanguageToggle className="shrink-0" />
-          <Link
+          <Button
             href="/get-involved#donate"
-            className="hidden rounded-full bg-flag-red px-5 py-2 text-sm font-semibold text-sand-50 shadow-sm transition-transform hover:-translate-y-0.5 lg:inline-block"
+            variant="urgent"
+            size="md"
+            className="hidden lg:inline-flex"
           >
             {t.nav.donate}
-          </Link>
+          </Button>
 
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls="mobile-menu"
-            className="grid h-9 w-9 shrink-0 place-items-center rounded-md border border-line-strong bg-sand-100 text-ink-800 transition-colors hover:bg-ink-900/5 sm:h-10 sm:w-10 lg:hidden"
+            className="grid h-11 w-11 shrink-0 place-items-center bg-surface text-ink-800 transition-colors active:scale-[0.97] lg:hidden"
           >
             <span className="sr-only">{open ? t.nav.close : t.nav.menu}</span>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -132,7 +133,7 @@ export function SiteHeader() {
           {/* Caps at the viewport so long menus scroll instead of being cut off */}
           <nav
             aria-label="Mobile"
-            className="mx-auto flex max-h-[calc(100dvh-5rem)] max-w-7xl flex-col overflow-y-auto overscroll-contain border-t border-line bg-sand-50 px-4 py-4 sm:px-8 sm:py-5"
+            className="mx-auto flex max-h-[calc(100dvh-5rem)] max-w-7xl flex-col overflow-y-auto overscroll-contain bg-bg px-4 py-4 sm:px-8 sm:py-5"
           >
             {/* Closing on click (rather than in an effect on pathname) keeps
                 the menu in sync without a cascading re-render. */}
@@ -140,7 +141,7 @@ export function SiteHeader() {
               href="/"
               onClick={() => setOpen(false)}
               aria-current={pathname === "/" ? "page" : undefined}
-              className="rounded-lg px-4 py-3 text-base font-medium text-ink-800 transition-colors hover:bg-ink-900/5"
+              className="px-4 py-3 text-base font-medium text-ink-800 transition-colors hover:bg-ink/5"
             >
               {t.nav.home}
             </Link>
@@ -150,21 +151,17 @@ export function SiteHeader() {
                 href={l.href}
                 onClick={() => setOpen(false)}
                 aria-current={l.active ? "page" : undefined}
-                className={`rounded-lg px-4 py-3 text-base font-medium transition-colors hover:bg-ink-900/5 ${
+                className={`px-4 py-3 text-base font-medium transition-colors hover:bg-ink/5 ${
                   l.active ? "bg-flag-green/10 text-flag-green-dark font-semibold" : "text-ink-800"
                 }`}
               >
                 {l.label}
               </Link>
             ))}
-            <div className="mt-4 border-t border-line pt-4">
-              <Link
-                href="/get-involved#donate"
-                onClick={() => setOpen(false)}
-                className="block rounded-full bg-flag-red px-5 py-3 text-center text-base font-semibold text-sand-50 transition-transform hover:-translate-y-0.5"
-              >
+            <div className="mt-4">
+              <Button href="/get-involved#donate" variant="urgent" size="lg" className="w-full" onClick={() => setOpen(false)}>
                 {t.nav.donate}
-              </Link>
+              </Button>
             </div>
           </nav>
         </div>

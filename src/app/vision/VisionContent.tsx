@@ -73,10 +73,10 @@ export function VisionContent() {
             </h2>
             <p className="mx-auto mt-3 max-w-xl text-ink-600">{t.ui.vision.helpBody}</p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
-              <Button href="/get-involved" variant="gold">
+              <Button href="/get-involved" variant="accent">
                 {t.ui.vision.helpCtaPriorities}
               </Button>
-              <Button href="/wards" variant="outline">
+              <Button href="/wards" variant="primary">
                 {t.ui.vision.helpCtaCounty}
               </Button>
             </div>

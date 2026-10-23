@@ -109,8 +109,8 @@ export function StoryContent() {
             </ol>
 
             <div className="mt-10 flex flex-wrap gap-3 sm:mt-12">
-              <Button href="/vision" variant="gold">{t.ui.story.ctaVision}</Button>
-              <Button href="/record" variant="outline">{t.ui.story.ctaRecord}</Button>
+              <Button href="/vision" variant="accent">{t.ui.story.ctaVision}</Button>
+              <Button href="/record" variant="primary">{t.ui.story.ctaRecord}</Button>
             </div>
           </div>
         </Container>
