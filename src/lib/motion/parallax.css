@@ -1,0 +1,27 @@
+/* Parallax — scroll-driven layer for touch/coarse-pointer devices (the
+   common case on this site, per PRODUCT.md's mobile-first constraint).
+   Pure CSS scroll-driven animation; no scroll listener, no main-thread
+   cost. Desktop's pointer-driven layer is applied inline by Parallax.tsx
+   instead, since it needs the live cursor position. The two never run on
+   the same device (see the component's pointer-type gate), so they never
+   fight over `transform`. */
+
+@supports (animation-timeline: view()) {
+  .parallax-scroll {
+    animation: parallax-drift linear;
+    animation-timeline: view();
+    animation-range: cover 0% cover 100%;
+  }
+
+  @keyframes parallax-drift {
+    from { transform: translateY(-6%); }
+    to { transform: translateY(6%); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .parallax-scroll {
+    animation: none;
+    transform: none;
+  }
+}

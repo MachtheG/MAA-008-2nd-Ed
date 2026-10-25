@@ -108,6 +108,23 @@ export type UiCopy = {
     heroPhotoAlt: string;
     heroPhotoCaption: string;
     centralPromise: string;
+    factBorn: string;
+    factMp: string;
+    factDecades: string;
+    factElection: string;
+    mapNote: string;
+    statsHeading: string;
+    statWater: string;
+    statRoads: string;
+    statBursary: string;
+    statConstituencies: string;
+    galleryHeading: string;
+    galleryMapAlt: string;
+    galleryMapCaption: string;
+    galleryAmbassadorCaption: string;
+    galleryParliamentCaption: string;
+    galleryUnhcrCaption: string;
+    galleryLivestockCaption: string;
   };
   story: {
     kicker: string;
@@ -137,6 +154,7 @@ export type UiCopy = {
     educationKicker: string;
     languagesKicker: string;
     countyKicker: string;
+    countyNote: string;
     ctaStory: string;
     ctaVision: string;
   };
@@ -221,6 +239,7 @@ export type UiCopy = {
     copyright: string;
     disclaimer: string;
     skipToContent: string;
+    photoCreditsLabel: string;
   };
 };
 
@@ -391,6 +410,23 @@ const en: Dictionary = {
         "Mohamed Abdi Affey greeting young people in Wajir County.",
       heroPhotoCaption: "With young people of Wajir.",
       centralPromise: "Central promise:",
+      factBorn: "Born in Wajir",
+      factMp: "Elected MP, aged",
+      factDecades: "Decades of service",
+      factElection: "County election",
+      mapNote: "Wajir County — six constituencies, one county.",
+      statsHeading: "What the platform asks for, in numbers.",
+      statWater: "new water points by 2027",
+      statRoads: "km of priority roads to all-weather standard",
+      statBursary: "shillings a year in bursaries for Wajir students",
+      statConstituencies: "constituencies with a full-time local priority list",
+      galleryHeading: "The record, in pictures",
+      galleryMapAlt: "Map of Wajir County's six constituencies",
+      galleryMapCaption: "Wajir County — all six constituencies",
+      galleryAmbassadorCaption: "Ambassador to Somalia, 2003–2007",
+      galleryParliamentCaption: "Parliament Buildings, Nairobi — MP, 1997",
+      galleryUnhcrCaption: "UNHCR Special Envoy, Horn of Africa",
+      galleryLivestockCaption: "The pastoral economy the Vision pillar is built for",
     },
     story: {
       kicker: "The Story",
@@ -423,6 +459,7 @@ const en: Dictionary = {
       educationKicker: "Education",
       languagesKicker: "Languages",
       countyKicker: "Wajir County record",
+      countyNote: "As supplied by the campaign; these figures are not yet marked verified, draft or to-confirm the way the rest of this site's content is.",
       ctaStory: "Read the full story",
       ctaVision: "The vision for Wajir",
     },
@@ -532,6 +569,7 @@ const en: Dictionary = {
       disclaimer:
         "Draft site — content marked “Draft” or “To confirm” is not final and must be approved before publishing. Imagery is placeholder/atmospheric.",
       skipToContent: "Skip to content",
+      photoCreditsLabel: "Photographs of the subject's wider world:",
     },
   },
 };
@@ -702,6 +740,23 @@ const sw: Dictionary = {
       heroPhotoAlt: "Mohamed Abdi Affey akisalimiana na vijana Kaunti ya Wajir.",
       heroPhotoCaption: "Pamoja na vijana wa Wajir.",
       centralPromise: "Ahadi kuu:",
+      factBorn: "Alizaliwa Wajir",
+      factMp: "Alichaguliwa Mbunge, umri",
+      factDecades: "Miongo ya utumishi",
+      factElection: "Uchaguzi wa kaunti",
+      mapNote: "Kaunti ya Wajir — majimbo sita, kaunti moja.",
+      statsHeading: "Mpango unaohitaji nini, kwa namba.",
+      statWater: "vituo vipya vya maji kufikia 2027",
+      statRoads: "km za barabara za kipaumbele hadi kiwango cha hali zote",
+      statBursary: "shilingi kwa mwaka kwa ufadhili wa wanafunzi wa Wajir",
+      statConstituencies: "majimbo yenye orodha ya kipaumbele cha ndani ya muda wote",
+      galleryHeading: "Rekodi, kwa picha",
+      galleryMapAlt: "Ramani ya majimbo sita ya Kaunti ya Wajir",
+      galleryMapCaption: "Kaunti ya Wajir — majimbo yote sita",
+      galleryAmbassadorCaption: "Balozi wa Somalia, 2003–2007",
+      galleryParliamentCaption: "Jengo la Bunge, Nairobi — Mbunge, 1997",
+      galleryUnhcrCaption: "Mjumbe Maalum wa UNHCR, Pembe ya Afrika",
+      galleryLivestockCaption: "Uchumi wa kifugaji unaolengwa na nguzo ya Dira",
     },
     story: {
       kicker: "Hadithi",
@@ -734,6 +789,7 @@ const sw: Dictionary = {
       educationKicker: "Elimu",
       languagesKicker: "Lugha",
       countyKicker: "Rekodi ya Kaunti ya Wajir",
+      countyNote: "Kama ilivyotolewa na kampeni; namba hizi bado hazijawekwa alama ya kuthibitishwa, rasimu au kuthibitishwa kama maudhui mengine ya tovuti hii.",
       ctaStory: "Soma hadithi kamili",
       ctaVision: "Dira ya Wajir",
     },
@@ -843,6 +899,7 @@ const sw: Dictionary = {
       disclaimer:
         "Tovuti ya rasimu — maudhui yaliyowekwa alama “Rasimu” au “Itathibitishwa” siyo ya mwisho na lazima yaidhinishwe kabla ya kuchapisha. Picha ni za muda/za mandhari.",
       skipToContent: "Rukia hadi maudhui",
+      photoCreditsLabel: "Picha za ulimwengu mpana wa mhusika:",
     },
   },
 };
@@ -1003,6 +1060,23 @@ const so: Dictionary = {
       heroPhotoAlt: "Sawir cuqa ay bulshada shafanta",
       heroPhotoCaption: "Wajir, 2024",
       centralPromise: "Wajir Hore, Ilaa Calaacal",
+      factBorn: "Ku dhashay Wajir",
+      factMp: "La doortay MP, da'da",
+      factDecades: "Tobannaan sano oo adeeg",
+      factElection: "Doorashada gobolka",
+      mapNote: "Gobolka Wajir — lix bunges, gobol keliya.",
+      statsHeading: "Waxa qorshaha u baahan yahay, tirooyin ahaan.",
+      statWater: "goobood biyo cusub oo la dhisi doono 2027",
+      statRoads: "km jidadka mudnaanta leh ee la horumarin doono",
+      statBursary: "shilin sannadkiiba oo deeqo waxbarasho ah dadka Wajir",
+      statConstituencies: "bunges leh liiska mudnaanta maalin walba",
+      galleryHeading: "Taariikhda, sawirro ahaan",
+      galleryMapAlt: "Khariidada lixda bungo ee Gobolka Wajir",
+      galleryMapCaption: "Gobolka Wajir — dhammaan lixda bungo",
+      galleryAmbassadorCaption: "Ambassador Somalia, 2003–2007",
+      galleryParliamentCaption: "Dhismaha Baarlamaanka, Nairobi — MP, 1997",
+      galleryUnhcrCaption: "Wargeeye Gaar ah ee UNHCR, Geeska Afrika",
+      galleryLivestockCaption: "Dhaqaalaha xoolaha ee tiirka Aragtida",
     },
     story: {
       kicker: "Hadithu",
@@ -1035,6 +1109,7 @@ const so: Dictionary = {
       educationKicker: "Waxbarashada",
       languagesKicker: "Luugaha",
       countyKicker: "Rekodka Gobolka Wajir",
+      countyNote: "Sida ay kampeinku bixisay; tirooyinkan weli lama calaamadin sax, qabyo ama la xaqiijiyay sida qaybaha kale ee boggan.",
       ctaStory: "Akhri hadithu oo dhan",
       ctaVision: "Waxyaaraha Wajir",
     },
@@ -1144,6 +1219,7 @@ const so: Dictionary = {
       disclaimer:
         "Goboka rasimu — waxyaaraha aysan fasaxan \"Rasimu\" ama \"Iyo iyo ay ay ku gaareysanayso\" siyo waxyaabaha iska dhamaystiran iyo must la tixgeliso kahor daabaca. Sawirka waa waxyaabaha waqti le'eg/sawir bariis.",
       skipToContent: "Iska gal waxyaaraha",
+      photoCreditsLabel: "Sawirada dunida ballaaran ee mawduuca:",
     },
   },
 };

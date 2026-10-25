@@ -1,189 +1,335 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { HomeHero } from "@/components/home/HomeHero";
 import { ElectionCountdown } from "@/components/ElectionCountdown";
 import { Container } from "@/components/ui/Container";
-import { Kicker } from "@/components/ui/Kicker";
 import { Button } from "@/components/ui/Button";
-import { Reveal } from "@/components/ui/Reveal";
-import { PhotoSlot } from "@/components/ui/PhotoSlot";
+import { TextLink } from "@/components/ui/TextLink";
+import { Reveal, RevealGroup } from "@/lib/motion";
 import { StatusBadge } from "@/components/ui/Status";
 import { useContent } from "@/content/useContent";
 import { useLanguage } from "@/i18n/LanguageProvider";
+import { WajirSilhouette } from "@/components/ui/WajirSilhouette";
 
 export function HomeContent() {
   return (
     <>
       <HomeHero />
-      <CountdownSection />
-      <VisionTeaser />
-      <StoryTeaser />
-      <PullQuote />
-      <CtaBand />
+      <CountdownStrip />
+      <AboutSection />
+      <StatsSection />
+      <FeaturesSection />
+      <GallerySection />
+      <StatementSection />
+      <CtaSection />
     </>
   );
 }
 
 /* --------------------------------------------------------------- */
 
-function CountdownSection() {
+function CountdownStrip() {
   return (
-    <section className="border-b border-line bg-sand-100 py-12 sm:py-16">
-      <Container>
-        <div className="mx-auto max-w-2xl">
-          <Reveal>
-            <ElectionCountdown />
-          </Reveal>
-        </div>
+    <section className="bg-field-dossier py-10 sm:py-14">
+      <Container width="prose">
+        <Reveal>
+          <ElectionCountdown />
+        </Reveal>
       </Container>
     </section>
   );
 }
 
-function VisionTeaser() {
-  const { t } = useLanguage();
-  const { visionPillars } = useContent();
-  const featured = visionPillars.slice(0, 3);
-
-  return (
-    <section className="bg-sand-50 bg-topo py-16 sm:py-20 lg:py-28">
-      <Container>
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <div className="max-w-2xl">
-            <Kicker>{t.ui.home.visionKicker}</Kicker>
-            <h2 className="mt-4 font-display text-2xl font-semibold tracking-tight text-balance text-ink-900 sm:text-4xl lg:text-[2.75rem] lg:leading-[1.05]">
-              {t.ui.home.visionHeading}
-            </h2>
-          </div>
-          <Button href="/vision" variant="outline" className="shrink-0 self-start sm:self-auto">
-            {t.ui.home.seeAllPriorities}
-          </Button>
-        </div>
-
-        <div className="mt-4 flex flex-wrap items-center gap-2 text-sm text-ink-500">
-          <StatusBadge status="draft" />
-          <span>{t.ui.home.draftNotice}</span>
-        </div>
-
-        <div className="mt-10 grid gap-5 sm:gap-6 md:grid-cols-3 lg:mt-12">
-          {featured.map((p, i) => (
-            <Reveal key={p.id} as="article" delay={i * 90}>
-              <Link
-                href="/vision"
-                className="group flex h-full flex-col rounded-2xl border border-line bg-sand-50 p-6 transition-all hover:-translate-y-1 hover:border-flag-green/40 hover:shadow-lg sm:p-7"
-              >
-                <span className="font-display text-4xl font-semibold text-ochre-400">
-                  {p.number}
-                </span>
-                <h3 className="mt-4 font-display text-xl font-semibold text-ink-900">
-                  {p.title}
-                </h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-ink-600">
-                  {p.promise}
-                </p>
-                <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-flag-green-dark">
-                  {t.ui.home.readMore}
-                  <span className="transition-transform group-hover:translate-x-1">→</span>
-                </span>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
-      </Container>
-    </section>
-  );
-}
-
-function StoryTeaser() {
+/**
+ * "about" blueprint (Wide photo, colour tile, facts) — adjusted: the
+ * right tile holds a small drawn outline of Wajir County instead of a
+ * floor plan, since that is the real shape this subject owns.
+ */
+function AboutSection() {
   const { t } = useLanguage();
   const { storyIntro } = useContent();
 
   return (
-    <section className="border-y border-line bg-sand-100 py-16 sm:py-20 lg:py-28">
-      <Container>
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-          <Reveal className="order-2 lg:order-1">
-            <Kicker tone="ochre">{t.ui.home.storyKicker}</Kicker>
-            <h2 className="mt-4 font-display text-2xl font-semibold tracking-tight text-balance text-ink-900 sm:text-4xl lg:text-[2.5rem] lg:leading-[1.08]">
-              {t.ui.home.storyHeading}
-            </h2>
-            <p className="mt-5 text-base leading-relaxed text-ink-700 sm:mt-6 sm:text-lg">
-              {storyIntro}
-            </p>
-            <div className="mt-7 sm:mt-8">
-              <Button href="/story">{t.ui.home.readFullStory}</Button>
+    <section className="bg-bg py-16 sm:py-20 lg:py-28">
+      <Container width="wide">
+        <h2 className="font-display text-head font-semibold tracking-tight text-ink" style={{ letterSpacing: "-0.02em" }}>
+          {t.ui.home.storyHeading}
+        </h2>
+        <Reveal as="p" className="mt-6 max-w-[40ch] text-lead leading-[1.35] text-ink-700">
+          {storyIntro}
+        </Reveal>
+
+        <div className="mt-14 grid gap-3 lg:grid-cols-12 lg:gap-3">
+          <Reveal as="div" className="relative lg:col-span-8">
+            <div className="relative aspect-[16/10] overflow-hidden bg-surface">
+              <Image
+                src="/images/MohamedA01.jpg"
+                alt={t.ui.home.portraitAlt}
+                fill
+                sizes="(max-width: 1024px) 100vw, 66vw"
+                className="object-cover"
+              />
             </div>
           </Reveal>
-          <Reveal className="order-1 lg:order-2" delay={120}>
-            <PhotoSlot
-              src="/images/MohamedA01.jpg"
-              alt={t.ui.home.portraitAlt}
-              caption={t.ui.home.portraitCaption}
-              ratio="1/1"
-              className="mx-auto w-full max-w-sm shadow-xl sm:max-w-md"
-            />
+
+          <Reveal as="div" delay={90} className="flex flex-col justify-between bg-field-green p-6 text-field-green-ink lg:col-span-4 sm:p-8">
+            <WajirOutline />
           </Reveal>
+        </div>
+
+        {/* One <div> per group directly under <dl> (axe's definition-list
+            rule): Reveal renders that one div itself, styled, rather than
+            wrapping a second div inside it. */}
+        <dl className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          {[
+            { value: "1968", label: t.ui.home.factBorn },
+            { value: "27", label: t.ui.home.factMp },
+            { value: "3", label: t.ui.home.factDecades },
+            { value: "2027", label: t.ui.home.factElection },
+          ].map((f, i) => (
+            <Reveal key={f.label} as="div" delay={i * 60} className="bg-surface px-4 py-4">
+              <dt className="font-display text-2xl font-semibold tabular-nums text-ink sm:text-3xl">{f.value}</dt>
+              <dd className="mt-1 text-sm text-muted">{f.label}</dd>
+            </Reveal>
+          ))}
+        </dl>
+      </Container>
+    </section>
+  );
+}
+
+function WajirOutline() {
+  const { t } = useLanguage();
+  return (
+    <>
+      <WajirSilhouette className="h-32 w-auto opacity-90" />
+      <p className="mt-6 text-sm leading-relaxed opacity-90">{t.ui.home.mapNote}</p>
+    </>
+  );
+}
+
+/**
+ * "stats" blueprint (Column aligned on the decimal) — the handful of
+ * figures that make the platform's case, from the vision pillars'
+ * stated targets. Real numbers, not invented.
+ */
+function StatsSection() {
+  const { t } = useLanguage();
+  const figures = [
+    { value: "500", caption: t.ui.home.statWater },
+    { value: "300", caption: t.ui.home.statRoads },
+    { value: "50M", caption: t.ui.home.statBursary },
+    { value: "6", caption: t.ui.home.statConstituencies },
+  ];
+
+  return (
+    <section className="bg-bg py-16 sm:py-20 lg:py-28">
+      <Container width="wide">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-6">
+          <h2 className="font-display text-head font-semibold leading-[1.1] text-ink lg:col-span-5">
+            {t.ui.home.statsHeading}
+          </h2>
+          <RevealGroup as="div" stagger={70} className="flex flex-col gap-5 lg:col-span-7">
+            {figures.map((f) => (
+              <div key={f.caption} className="flex items-baseline gap-5 border-t border-sand-300 pt-5 first:border-t-0 first:pt-0">
+                <span className="font-display text-display font-semibold leading-none tabular-nums text-ink" style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)" }}>
+                  {f.value}
+                </span>
+                <span className="text-body text-ink-600">{f.caption}</span>
+              </div>
+            ))}
+          </RevealGroup>
         </div>
       </Container>
     </section>
   );
 }
 
-function PullQuote() {
+/**
+ * "features" blueprint (Pinned heading, passing rows) — the six vision
+ * pillars. Two have a real found photograph of their subject; the other
+ * four take a flat field colour rather than a stock photo of
+ * infrastructure that does not yet exist.
+ */
+function FeaturesSection() {
   const { t } = useLanguage();
-  return (
-    <section className="relative overflow-hidden bg-flag-green-deep py-16 text-sand-50 sm:py-20 lg:py-28">
-      <div className="absolute inset-0 bg-contour opacity-60" aria-hidden="true" />
-      <Container width="prose" className="relative text-center">
-        <span className="font-display text-6xl leading-none text-ochre-300" aria-hidden="true">
-          &ldquo;
-        </span>
-        <blockquote className="mt-2 font-display text-xl font-medium leading-snug text-balance sm:text-2xl lg:text-[2rem] lg:leading-[1.25]">
-          {t.ui.home.quote}
-        </blockquote>
-        <p className="mt-6 text-sm uppercase tracking-[0.16em] text-sand-100/70">
-          <span className="italic normal-case tracking-normal text-ochre-200">
-            {t.ui.home.quoteAttribution}
-          </span>
-        </p>
-      </Container>
-    </section>
-  );
-}
+  const { visionPillars } = useContent();
 
-function CtaBand() {
-  const { t } = useLanguage();
+  const treatment: Record<string, { kind: "photo"; src: string; alt: string } | { kind: "field"; cls: string }> = {
+    water: { kind: "field", cls: "bg-field-ochre text-field-ochre-ink" },
+    livestock: { kind: "photo", src: "/images/found/camels-roadside.jpg", alt: "Camels on a roadside, central to the pastoral economy of northern Kenya" },
+    health: { kind: "field", cls: "bg-field-green text-field-green-ink" },
+    education: { kind: "field", cls: "bg-field-dossier text-field-dossier-ink" },
+    roads: { kind: "field", cls: "bg-field-ochre text-field-ochre-ink" },
+    peace: { kind: "photo", src: "/images/found/acacia-savannah.jpg", alt: "Acacia savanna, northern Kenya" },
+  };
+
   return (
-    <section className="bg-sand-50 py-16 sm:py-20 lg:py-24">
-      <Container>
-        <div className="relative overflow-hidden rounded-3xl bg-ink-900 px-6 py-10 text-sand-50 sm:px-10 sm:py-14 lg:px-14">
-          <div className="absolute inset-0 bg-topo opacity-[0.15]" aria-hidden="true" />
-          <div className="relative grid gap-8 lg:grid-cols-[1.5fr_1fr] lg:items-center">
-            <div>
-              <h2 className="font-display text-2xl font-semibold tracking-tight text-balance sm:text-3xl lg:text-4xl">
-                {t.ui.home.ctaHeading}
-              </h2>
-              <p className="mt-4 max-w-xl text-base text-sand-100/85 sm:text-lg">
-                {t.ui.home.ctaBody}
-              </p>
+    <section className="bg-surface py-16 sm:py-20 lg:py-28">
+      <Container width="wide">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-10">
+          <div className="lg:col-span-4">
+            <h2 className="font-display text-head font-semibold leading-[1.05] text-ink lg:sticky lg:top-28">
+              {t.ui.home.visionHeading}
+            </h2>
+          </div>
+
+          <div className="flex flex-col gap-16 lg:col-span-8">
+            <div className="flex items-center gap-2">
+              <StatusBadge status="draft" />
+              <span className="text-sm text-muted">{t.ui.home.draftNotice}</span>
             </div>
-            <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-              <Button href="/get-involved" variant="gold" size="lg" className="w-full">
-                {t.ui.home.ctaPrimary}
-              </Button>
-              <Button
-                href="/get-involved#donate"
-                size="lg"
-                variant="outline"
-                className="w-full border-sand-50/40 text-sand-50 hover:bg-sand-50/10"
-              >
-                {t.ui.home.ctaSecondary}
-              </Button>
+
+            {visionPillars.map((p, i) => {
+              const t2 = treatment[p.id] ?? { kind: "field", cls: "bg-field-dossier text-field-dossier-ink" };
+              const flip = i % 2 === 1;
+              return (
+                <Reveal key={p.id} as="article">
+                  <div className={`flex flex-col gap-5 sm:flex-row sm:gap-8 ${flip ? "sm:flex-row-reverse" : ""}`}>
+                    <div className="relative aspect-3/4 w-full shrink-0 overflow-hidden sm:w-44">
+                      {t2.kind === "photo" ? (
+                        <Image src={t2.src} alt={t2.alt} fill sizes="200px" className="object-cover" />
+                      ) : (
+                        <div className={`h-full ${t2.cls}`} />
+                      )}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <h3 className="font-display text-xl font-semibold text-ink sm:text-2xl">{p.title}</h3>
+                      <p className="mt-2 font-medium text-flag-green-dark">{p.promise}</p>
+                      <ul className="mt-4 space-y-2.5">
+                        {p.points.map((pt, j) => {
+                          const isDraft = pt.startsWith("[DRAFT") || pt.startsWith("[RASIMU");
+                          return (
+                            <li key={j} className={`text-sm leading-relaxed ${isDraft ? "italic text-muted" : "text-ink-700"}`}>
+                              {pt}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  </div>
+                </Reveal>
+              );
+            })}
+
+            <div>
+              <Button href="/vision" variant="primary">{t.ui.home.seeAllPriorities}</Button>
             </div>
           </div>
         </div>
       </Container>
+    </section>
+  );
+}
+
+/** "gallery" blueprint (Drag row of mixed modules) — a native scroll-
+ * snap row, no library, that also works with touch, trackpad and the
+ * keyboard (motion.md "Sideways gallery": native row first). */
+function GallerySection() {
+  const { t } = useLanguage();
+  const items: { src: string; alt: string; href: string; caption: string }[] = [
+    { src: "/images/wajirc.jpeg", alt: t.ui.home.galleryMapAlt, href: "/wards", caption: t.ui.home.galleryMapCaption },
+    { src: "/images/found/unpos-mogadishu-2011.jpg", alt: "UNPOS conference, Mogadishu, 2011", href: "/record", caption: t.ui.home.galleryAmbassadorCaption },
+    { src: "/images/found/parliament-buildings-nairobi.jpg", alt: "Parliament Buildings, Nairobi", href: "/record", caption: t.ui.home.galleryParliamentCaption },
+    { src: "/images/found/dadaab-refugee-camp.jpg", alt: "Dadaab refugee camp, northern Kenya", href: "/record", caption: t.ui.home.galleryUnhcrCaption },
+    { src: "/images/found/somali-livestock-trader.jpg", alt: "A Somali livestock trader", href: "/vision", caption: t.ui.home.galleryLivestockCaption },
+  ];
+
+  return (
+    <section className="bg-bg py-16 sm:py-20 lg:py-28">
+      <div className="flex items-baseline justify-between px-5 sm:px-8">
+        <h2 className="font-display text-head font-semibold text-ink">{t.ui.home.galleryHeading}</h2>
+        <span className="text-sm text-muted">{items.length}</span>
+      </div>
+      <ul className="mt-8 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-3 scroll-px-5 sm:gap-4 sm:px-8">
+        {items.map((it) => (
+          <li key={it.href + it.src} className="shrink-0 snap-start" style={{ flexBasis: "min(72vw, 22rem)" }}>
+            <Link href={it.href} className="group block">
+              <div className="relative aspect-4/5 overflow-hidden bg-surface">
+                <Image
+                  src={it.src}
+                  alt={it.alt}
+                  fill
+                  sizes="(max-width: 640px) 72vw, 22rem"
+                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                />
+              </div>
+              <p className="mt-2 text-sm text-ink-700">{it.caption}</p>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+/**
+ * The home page's pulled statement. The source text's attribution in
+ * the dictionary is "— Anonymous" — not a named testimonial-giver — so
+ * this is built as a plain statement (no portrait, no invented speaker),
+ * not forced into the dealt "testimonial" blueprint's portrait-and-quote
+ * composition, which would visually imply a real person vouching for the
+ * candidate. Documented in the Phase 6 report as a content item for the
+ * campaign to confirm (attribute it, or remove it) before launch.
+ */
+function StatementSection() {
+  const { t } = useLanguage();
+  return (
+    <section className="bg-field-green py-20 text-field-green-ink sm:py-28 lg:py-36">
+      <Container width="prose">
+        <Reveal as="blockquote" className="font-display text-head font-medium leading-[1.15] text-balance">
+          {t.ui.home.quote}
+        </Reveal>
+        <p className="mt-6 text-sm text-field-green-ink/70">{t.ui.home.quoteAttribution}</p>
+      </Container>
+    </section>
+  );
+}
+
+/**
+ * "cta" blueprint (Three photographs, then a field) — adjusted per the
+ * direction sheet's own instructions: no button, the underlined phrase
+ * is the action.
+ */
+function CtaSection() {
+  const { t } = useLanguage();
+  const strip = [
+    "/images/found/camels-roadside.jpg",
+    "/images/acacia.jpg",
+    "/images/MohamedA05.jpeg",
+  ];
+
+  return (
+    <section>
+      <div className="flex">
+        {strip.map((src, i) => (
+          <div key={src} className="relative h-[40svh] flex-1 overflow-hidden">
+            <Image src={src} alt="" aria-hidden="true" fill sizes="33vw" className="object-cover" priority={i === 0 && false} />
+          </div>
+        ))}
+      </div>
+      <div className="bg-field-dossier py-16 text-field-dossier-ink sm:py-20">
+        <Container width="wide">
+          <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-end">
+            <p className="max-w-xl font-display text-lead leading-[1.3]">
+              {t.ui.home.ctaBody}{" "}
+              <TextLink href="/get-involved" tone="light" className="font-display text-lead">
+                {t.ui.home.ctaPrimary}
+              </TextLink>
+            </p>
+            <div className="flex items-center gap-4 lg:justify-end">
+              <div className="relative h-24 w-20 shrink-0 overflow-hidden">
+                <Image src="/images/MohamedA01.jpg" alt={t.ui.home.heroPhotoAlt} fill sizes="80px" className="object-cover" />
+              </div>
+              <TextLink href="/get-involved#donate" tone="light">
+                {t.ui.home.ctaSecondary}
+              </TextLink>
+            </div>
+          </div>
+        </Container>
+      </div>
     </section>
   );
 }

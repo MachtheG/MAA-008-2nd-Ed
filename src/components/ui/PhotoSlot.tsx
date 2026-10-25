@@ -12,7 +12,6 @@ export function PhotoSlot({
   ratio = "4/5",
   priority = false,
   className = "",
-  rounded = "rounded-2xl",
 }: {
   src?: string;
   alt?: string;
@@ -20,11 +19,10 @@ export function PhotoSlot({
   ratio?: string;
   priority?: boolean;
   className?: string;
-  rounded?: string;
 }) {
   return (
     <figure
-      className={`relative overflow-hidden ${rounded} bg-sand-200 ${className}`}
+      className={`relative overflow-hidden bg-surface ${className}`}
       style={{ aspectRatio: ratio }}
     >
       {src ? (
@@ -37,13 +35,13 @@ export function PhotoSlot({
           className="object-cover"
         />
       ) : (
-        <div className="absolute inset-0 grid place-items-center bg-gradient-to-br from-sand-200 to-sand-300">
+        <div className="absolute inset-0 grid place-items-center bg-surface">
           <div className="px-6 text-center">
             <svg
               width="56"
               height="56"
               viewBox="0 0 56 56"
-              className="mx-auto text-ink-500/40"
+              className="mx-auto text-muted/50"
               aria-hidden="true"
             >
               <rect x="4" y="8" width="48" height="40" rx="4" fill="none" stroke="currentColor" strokeWidth="2.5" />
@@ -54,16 +52,13 @@ export function PhotoSlot({
               Official photo
             </p>
             {caption && (
-              <p className="mx-auto mt-1 max-w-[22ch] text-xs leading-snug text-ink-500">
+              <p className="mx-auto mt-1 max-w-[22ch] text-xs leading-snug text-muted">
                 {caption}
               </p>
             )}
           </div>
         </div>
       )}
-      {/* corner ticks for an intentional, editorial frame */}
-      <span aria-hidden className="pointer-events-none absolute left-3 top-3 h-4 w-4 border-l-2 border-t-2 border-sand-50/70" />
-      <span aria-hidden className="pointer-events-none absolute bottom-3 right-3 h-4 w-4 border-b-2 border-r-2 border-sand-50/70" />
     </figure>
   );
 }

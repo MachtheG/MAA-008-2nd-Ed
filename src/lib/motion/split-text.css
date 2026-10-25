@@ -1,0 +1,33 @@
+/* Masked line reveal — the signature move (direction sheet §8).
+   Each line's wrapper clips its own baseline; the inner span carries the
+   motion so only transform/opacity animate, never layout. Pure CSS: it
+   runs even if JS is slow, and prefers-reduced-motion is handled once,
+   globally, in globals.css (.reveal rule) plus the override below. */
+
+.split-line {
+  display: block;
+  overflow: clip;
+}
+
+.split-line-inner {
+  display: block;
+  transform: translateY(110%);
+  opacity: 0;
+  animation: split-line-in var(--duration-signature) var(--ease-out-expo) forwards;
+  animation-delay: var(--split-delay, 0ms);
+}
+
+@keyframes split-line-in {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .split-line-inner {
+    animation: none;
+    transform: none;
+    opacity: 1;
+  }
+}

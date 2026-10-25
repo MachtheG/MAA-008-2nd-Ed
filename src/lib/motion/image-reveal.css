@@ -1,0 +1,33 @@
+/* Image shutter (motion.md "Image shutter"). Default state is fully
+   visible, unclipped, at rest — safe if JS never runs. JS adds
+   `.pending` only once it has confirmed it can also remove it again (on
+   mount, gated on prefers-reduced-motion and priority), so a script
+   that fails or is disabled never leaves a photograph invisible. */
+.image-reveal-frame {
+  clip-path: inset(0% 0% 0% 0%);
+  transition: clip-path var(--duration-signature) var(--ease-out-expo);
+}
+.image-reveal-frame.pending {
+  clip-path: inset(0% 0% 0% 100%);
+}
+
+.image-reveal-img {
+  transform: scale(1);
+  transition: transform 1100ms var(--ease-out-expo);
+}
+.image-reveal-img.pending {
+  transform: scale(1.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image-reveal-frame,
+  .image-reveal-frame.pending {
+    clip-path: inset(0% 0% 0% 0%);
+    transition: none;
+  }
+  .image-reveal-img,
+  .image-reveal-img.pending {
+    transform: none;
+    transition: none;
+  }
+}

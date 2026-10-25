@@ -66,12 +66,12 @@ export function ElectionCountdown() {
   ];
 
   return (
-    <div className="border border-line bg-sand-50 p-4 sm:p-6 lg:p-8">
+    <div className="bg-surface p-4 sm:p-6 lg:p-8">
       <div className="text-center">
-        <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-flag-green-dark sm:text-xs sm:tracking-[0.16em]">
+        <p className="font-display text-base font-semibold text-flag-green-dark sm:text-lg">
           {t.ui.countdown.label}
         </p>
-        <p className="mt-1.5 text-sm text-ink-500">{t.ui.countdown.dateLine}</p>
+        <p className="mt-1.5 text-sm text-muted">{t.ui.countdown.dateLine}</p>
       </div>
 
       {time?.passed ? (
@@ -83,7 +83,7 @@ export function ElectionCountdown() {
           {units.map((u) => (
             <div
               key={u.key}
-              className="min-w-0 border border-line bg-ink-900 px-1 py-3 text-center sm:px-2 sm:py-4"
+              className="min-w-0 bg-ink px-1 py-3 text-center sm:px-2 sm:py-4"
             >
               <div
                 className="font-display text-[1.6rem] font-semibold leading-none tabular-nums text-ochre-300 sm:text-4xl"
@@ -93,7 +93,7 @@ export function ElectionCountdown() {
                 {u.value === undefined ? "––" : String(u.value).padStart(2, "0")}
               </div>
               {/* Labels shrink rather than wrap on the narrowest phones */}
-              <div className="mt-1.5 truncate text-[0.6rem] font-medium uppercase tracking-tight text-sand-100/60 sm:mt-2 sm:text-xs sm:tracking-wide">
+              <div className="mt-1.5 truncate text-[0.7rem] font-medium text-sand-100/70 sm:mt-2 sm:text-xs">
                 {u.label}
               </div>
             </div>
@@ -115,7 +115,7 @@ export function ElectionCountdownBar() {
 
   if (time?.passed) {
     return (
-      <div className="border-b border-flag-green-deep bg-flag-green-dark px-4 py-1.5 text-center text-xs font-semibold text-sand-50 sm:text-sm">
+      <div className="bg-flag-green-dark px-4 py-1.5 text-center text-xs font-semibold text-sand-50 sm:text-sm">
         {t.ui.countdown.passed}
       </div>
     );
@@ -129,9 +129,9 @@ export function ElectionCountdownBar() {
   ];
 
   return (
-    <div className="border-b border-flag-green-deep bg-flag-green-dark text-sand-50">
+    <div className="bg-flag-green-dark text-sand-50">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-2 gap-y-1 px-4 py-1.5 text-center sm:justify-between sm:px-8">
-        <span className="hidden text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-sand-100/80 sm:inline">
+        <span className="hidden text-xs font-semibold text-sand-100/80 sm:inline">
           {t.ui.countdown.label}
         </span>
         <span

@@ -2,11 +2,27 @@
 
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
-import { Reveal } from "@/components/ui/Reveal";
+import { Reveal } from "@/lib/motion";
 import { Button } from "@/components/ui/Button";
 import { StatusBadge } from "@/components/ui/Status";
 import { useContent } from "@/content/useContent";
 import { useLanguage } from "@/i18n/LanguageProvider";
+
+/**
+ * Six pillars as six full-bleed chapters — "colour by chapter"
+ * (motion.md's signature-move table): the whole ground changes at each
+ * pillar, hard cuts, no card, no grid. Distinct from the Home page's
+ * pinned-heading teaser of the same six pillars, so the two pages don't
+ * repeat one composition for one subject.
+ */
+const FIELDS = [
+  "bg-field-paper text-field-paper-ink",
+  "bg-field-green text-field-green-ink",
+  "bg-field-ochre text-field-ochre-ink",
+  "bg-field-dossier text-field-dossier-ink",
+  "bg-field-paper text-field-paper-ink",
+  "bg-field-green text-field-green-ink",
+];
 
 export function VisionContent() {
   const { t } = useLanguage();
@@ -14,72 +30,50 @@ export function VisionContent() {
 
   return (
     <>
-      <PageHero
-        kicker={t.ui.vision.kicker}
-        title={t.ui.vision.title}
-        intro={t.ui.vision.intro}
-        image="/images/desert-expanse.jpg"
-        imageAlt={t.ui.vision.imageAlt}
-      />
+      <PageHero title={t.ui.vision.title} intro={t.ui.vision.intro} image="/images/desert-expanse.jpg" imageAlt={t.ui.vision.imageAlt} />
 
-      <section className="bg-sand-50 py-12 sm:py-16 lg:py-20">
+      <div className="bg-bg py-10 sm:py-12">
         <Container width="wide">
-          <div className="mx-auto max-w-3xl">
-            <p className="text-base leading-relaxed text-ink-700 sm:text-lg">
-              {visionIntro}
-            </p>
+          <p className="max-w-[60ch] text-lead leading-[1.35] text-ink-700">{visionIntro}</p>
+          <div className="mt-5 flex items-center gap-2">
+            <StatusBadge status="draft" />
+            <span className="text-sm text-muted">{t.ui.home.draftNotice}</span>
           </div>
+        </Container>
+      </div>
 
-          <div className="mt-10 grid gap-5 sm:gap-6 lg:mt-14 lg:grid-cols-2">
-            {visionPillars.map((p, i) => (
-              <Reveal key={p.id} as="article" delay={(i % 2) * 90}>
-                <div className="flex h-full flex-col rounded-2xl border border-line bg-sand-50 p-6 transition-shadow hover:shadow-md sm:p-8">
-                  <div className="flex items-start justify-between gap-4">
-                    <span className="font-display text-4xl font-semibold leading-none text-ochre-400 sm:text-5xl">
-                      {p.number}
-                    </span>
-                    <StatusBadge status={p.status} />
-                  </div>
-                  <h2 className="mt-5 font-display text-xl font-semibold tracking-tight text-ink-900 sm:text-2xl">
-                    {p.title}
-                  </h2>
-                  <p className="mt-2 font-medium text-flag-green-dark">{p.promise}</p>
-                  <ul className="mt-5 space-y-3 border-t border-line pt-5">
-                    {p.points.map((pt, j) => {
-                      const isDraftMarker = pt.startsWith("[DRAFT") || pt.startsWith("[RASIMU");
-                      return (
-                        <li key={j} className="flex gap-3 text-sm leading-relaxed">
-                          <span
-                            aria-hidden="true"
-                            className={`mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full ${
-                              isDraftMarker ? "bg-ochre-500" : "bg-flag-green"
-                            }`}
-                          />
-                          <span className={isDraftMarker ? "italic text-ink-500" : "text-ink-700"}>
-                            {pt}
-                          </span>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
+      {visionPillars.map((p, i) => (
+        <section key={p.id} className={FIELDS[i % FIELDS.length]}>
+          <Container width="wide" className="py-16 sm:py-20 lg:py-28">
+            <div className="grid gap-8 lg:grid-cols-12 lg:gap-14">
+              <Reveal as="div" className="lg:col-span-5">
+                <h2 className="font-display text-head font-semibold leading-[1.05]" style={{ letterSpacing: "-0.02em" }}>
+                  {p.title}
+                </h2>
+                <p className="mt-4 text-lead font-medium leading-[1.3] opacity-90">{p.promise}</p>
               </Reveal>
-            ))}
-          </div>
-
-          <div className="mx-auto mt-10 max-w-3xl rounded-2xl border border-line bg-sand-100 p-6 text-center sm:p-8 lg:mt-14">
-            <h2 className="font-display text-xl font-semibold text-ink-900 sm:text-2xl">
-              {t.ui.vision.helpHeading}
-            </h2>
-            <p className="mx-auto mt-3 max-w-xl text-ink-600">{t.ui.vision.helpBody}</p>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
-              <Button href="/get-involved" variant="gold">
-                {t.ui.vision.helpCtaPriorities}
-              </Button>
-              <Button href="/wards" variant="outline">
-                {t.ui.vision.helpCtaCounty}
-              </Button>
+              <Reveal as="ul" delay={90} className="space-y-4 lg:col-span-7">
+                {p.points.map((pt, j) => {
+                  const isDraft = pt.startsWith("[DRAFT") || pt.startsWith("[RASIMU");
+                  return (
+                    <li key={j} className={`text-body leading-relaxed ${isDraft ? "italic opacity-70" : "opacity-90"}`}>
+                      {pt}
+                    </li>
+                  );
+                })}
+              </Reveal>
             </div>
+          </Container>
+        </section>
+      ))}
+
+      <section className="bg-bg py-16 sm:py-20 lg:py-24">
+        <Container width="prose" className="text-center">
+          <h2 className="font-display text-head font-semibold text-ink">{t.ui.vision.helpHeading}</h2>
+          <p className="mx-auto mt-4 max-w-xl text-body text-ink-700">{t.ui.vision.helpBody}</p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
+            <Button href="/get-involved" variant="accent">{t.ui.vision.helpCtaPriorities}</Button>
+            <Button href="/wards" variant="primary">{t.ui.vision.helpCtaCounty}</Button>
           </div>
         </Container>
       </section>

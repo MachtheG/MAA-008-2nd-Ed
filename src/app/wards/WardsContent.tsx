@@ -10,13 +10,9 @@ export function WardsContent() {
 
   return (
     <>
-      <PageHero
-        kicker={t.ui.wards.kicker}
-        title={t.ui.wards.title}
-        intro={t.ui.wards.intro}
-      />
+      <PageHero title={t.ui.wards.title} intro={t.ui.wards.intro} />
 
-      <section className="bg-sand-50 py-12 sm:py-16 lg:py-20">
+      <section className="bg-bg py-16 sm:py-20 lg:py-24">
         <Container width="wide">
           <WajirMap />
         </Container>

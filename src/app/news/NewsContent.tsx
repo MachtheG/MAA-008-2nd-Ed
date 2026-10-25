@@ -4,6 +4,7 @@ import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { StatusBadge } from "@/components/ui/Status";
 import { Button } from "@/components/ui/Button";
+import { Reveal } from "@/lib/motion";
 import { useContent } from "@/content/useContent";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
@@ -13,54 +14,44 @@ export function NewsContent() {
 
   return (
     <>
-      <PageHero
-        kicker={t.ui.news.kicker}
-        title={t.ui.news.title}
-        intro={t.ui.news.intro}
-      />
+      <PageHero title={t.ui.news.title} intro={t.ui.news.intro} />
 
-      <section className="bg-sand-50 py-12 sm:py-16 lg:py-20">
+      {/* "list" blueprint — rows, not a card grid with a placeholder-
+          gradient thumbnail. No honest photograph exists for any of
+          these sample items, so the list stays text: real content at
+          readable size beats an invented picture (laws of the craft). */}
+      <section className="bg-bg py-16 sm:py-20 lg:py-24">
         <Container width="wide">
-          <div className="grid gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
-            {newsItems.map((item) => (
-              <article
+          <ul className="divide-y divide-sand-200">
+            {newsItems.map((item, i) => (
+              <Reveal
                 key={item.id}
-                className="flex flex-col overflow-hidden rounded-2xl border border-line bg-sand-50"
+                as="li"
+                delay={i * 60}
+                className="grid gap-2 py-7 first:pt-0 sm:grid-cols-[9rem_1fr] sm:gap-8 lg:grid-cols-[11rem_1fr]"
               >
-                <div className="relative aspect-[16/10] bg-linear-to-br from-sand-200 to-sand-300">
-                  <span className="absolute left-4 top-4 rounded-full bg-ink-900/80 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-sand-50">
+                <div className="flex flex-row items-center gap-2 sm:flex-col sm:items-start sm:gap-1.5">
+                  <span className="font-display text-sm font-semibold tabular-nums text-flag-green-dark">{item.date}</span>
+                  <span className="text-xs font-medium text-muted">
                     {item.kind === "News" ? t.ui.news.kindNews : t.ui.news.kindEvent}
                   </span>
                 </div>
-                <div className="flex flex-1 flex-col p-5 sm:p-6">
-                  <div className="flex flex-wrap items-center gap-2 text-xs text-ink-500 sm:gap-3">
-                    <span className="font-semibold uppercase tracking-wide">
-                      {item.date}
-                    </span>
+                <div>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h2 className="font-display text-xl font-semibold text-ink">{item.title}</h2>
                     <StatusBadge status={item.status} />
                   </div>
-                  <h2 className="mt-3 font-display text-lg font-semibold leading-snug text-ink-900">
-                    {item.title}
-                  </h2>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-ink-600">
-                    {item.excerpt}
-                  </p>
+                  <p className="mt-2 max-w-[65ch] text-body leading-relaxed text-ink-700">{item.excerpt}</p>
                 </div>
-              </article>
+              </Reveal>
             ))}
-          </div>
+          </ul>
 
-          <div className="mt-10 rounded-2xl border border-line bg-sand-100 p-6 text-center sm:p-8 lg:mt-12">
-            <h2 className="font-display text-xl font-semibold text-ink-900 sm:text-2xl">
-              {t.ui.news.updatesHeading}
-            </h2>
-            <p className="mx-auto mt-3 max-w-xl text-ink-600">
-              {t.ui.news.updatesBody}
-            </p>
-            <div className="mt-6">
-              <Button href="/get-involved" variant="gold">
-                {t.ui.news.updatesCta}
-              </Button>
+          <div className="mt-16 bg-field-ochre px-6 py-12 text-center text-field-ochre-ink sm:px-10 sm:py-16 lg:mt-20">
+            <h2 className="font-display text-head font-semibold">{t.ui.news.updatesHeading}</h2>
+            <p className="mx-auto mt-4 max-w-xl text-body opacity-90">{t.ui.news.updatesBody}</p>
+            <div className="mt-8">
+              <Button href="/get-involved" variant="primary">{t.ui.news.updatesCta}</Button>
             </div>
           </div>
         </Container>

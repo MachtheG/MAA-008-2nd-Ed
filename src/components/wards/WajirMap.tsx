@@ -86,10 +86,8 @@ export function WajirMap() {
   return (
     <div className="grid gap-6 sm:gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start lg:gap-12">
       {/* Map */}
-      <div className="rounded-2xl border border-line bg-sand-50 p-4 sm:p-6">
-        <p className="mb-4 text-center text-xs font-semibold uppercase tracking-wider text-ink-500">
-          {t.ui.wards.mapTitle}
-        </p>
+      <div className="bg-surface p-4 sm:p-6">
+        <p className="mb-4 text-center text-sm font-semibold text-ink-700">{t.ui.wards.mapTitle}</p>
 
         <svg
           viewBox={`0 0 ${MAP_W} ${MAP_H}`}
@@ -197,66 +195,50 @@ export function WajirMap() {
           {t.ui.wards.hqLabel}
         </p>
 
-        <p className="mx-auto mt-3 max-w-sm text-center text-xs leading-relaxed text-ink-500">
+        <p className="mx-auto mt-3 max-w-sm text-center text-xs leading-relaxed text-muted">
           {t.ui.wards.mapCaption}
         </p>
       </div>
 
       {/* Detail panel */}
       <div className="lg:sticky lg:top-24">
-        <div className="rounded-2xl border border-line bg-sand-100 p-5 sm:p-7 lg:p-8">
+        <div className="bg-field-green p-5 text-field-green-ink sm:p-7 lg:p-8">
           <div className="flex flex-wrap items-center justify-between gap-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-flag-green-dark">
-              {t.ui.wards.constituencyLabel}
-            </p>
-            <StatusBadge status={active.status} />
+            <p className="text-sm font-semibold opacity-90">{t.ui.wards.constituencyLabel}</p>
+            <StatusBadge status={active.status} inverted />
           </div>
-          <h2 className="mt-3 font-display text-2xl font-semibold tracking-tight text-ink-900 sm:text-3xl">
-            {active.name}
-          </h2>
+          <h2 className="mt-3 font-display text-2xl font-semibold tracking-tight sm:text-3xl">{active.name}</h2>
 
           {/* Population & voters, from the reference constituency map */}
-          <dl className="mt-5 grid grid-cols-2 gap-3">
-            <div className="rounded-xl border border-line bg-sand-50 px-4 py-3">
-              <dt className="text-xs font-medium text-ink-500">
-                {t.ui.wards.population}
-              </dt>
-              <dd className="mt-0.5 font-display text-xl font-semibold tabular-nums text-ink-900">
-                {nf.format(active.population)}
-              </dd>
+          <dl className="mt-5 grid grid-cols-2 gap-px">
+            <div className="bg-sand-50/10 px-4 py-3">
+              <dt className="text-xs font-medium opacity-75">{t.ui.wards.population}</dt>
+              <dd className="mt-0.5 font-display text-xl font-semibold tabular-nums">{nf.format(active.population)}</dd>
             </div>
-            <div className="rounded-xl border border-line bg-sand-50 px-4 py-3">
-              <dt className="text-xs font-medium text-ink-500">
-                {t.ui.wards.voters}
-              </dt>
-              <dd className="mt-0.5 font-display text-xl font-semibold tabular-nums text-flag-green-dark">
-                {nf.format(active.voters)}
-              </dd>
+            <div className="bg-sand-50/10 px-4 py-3">
+              <dt className="text-xs font-medium opacity-75">{t.ui.wards.voters}</dt>
+              <dd className="mt-0.5 font-display text-xl font-semibold tabular-nums text-ochre-300">{nf.format(active.voters)}</dd>
             </div>
           </dl>
 
-          <p className="mt-5 leading-relaxed text-ink-600">{active.note}</p>
+          <p className="mt-5 leading-relaxed opacity-90">{active.note}</p>
 
-          <div className="mt-6 rounded-xl border border-dashed border-ochre-500/40 bg-ochre-400/[0.07] p-4 text-sm text-ink-600">
-            <p className="font-semibold text-ink-800">
-              {t.ui.wards.whatLivesHereTitle}
-            </p>
+          <div className="mt-6 bg-sand-50/10 p-4 text-sm opacity-90">
+            <p className="font-semibold">{t.ui.wards.whatLivesHereTitle}</p>
             <p className="mt-1">{t.ui.wards.whatLivesHereBody}</p>
           </div>
         </div>
 
         {/* Quick selector */}
-        <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:flex lg:flex-wrap">
+        <div className="mt-px grid grid-cols-2 gap-px sm:grid-cols-3 lg:flex lg:flex-wrap lg:gap-px">
           {constituencies.map((c) => (
             <button
               key={c.id}
               type="button"
               onClick={() => setSelected(c.id)}
               aria-pressed={c.id === selected}
-              className={`rounded-full px-3 py-2 text-center text-xs font-medium transition-colors sm:text-sm ${
-                c.id === selected
-                  ? "bg-flag-green text-sand-50"
-                  : "border border-line text-ink-600 hover:bg-ink-900/5"
+              className={`px-3 py-3 text-center text-sm font-medium transition-colors ${
+                c.id === selected ? "bg-flag-green text-sand-50" : "bg-surface text-ink-600 hover:bg-sand-200"
               }`}
             >
               {c.name}
