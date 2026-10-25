@@ -6,7 +6,7 @@ import { useContent } from "@/content/useContent";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { FlagBar } from "@/components/ui/FlagBar";
-import { SplitText, ImageReveal, Parallax } from "@/lib/motion";
+import { SplitText, ImageReveal, Parallax, Magnetic } from "@/lib/motion";
 
 /**
  * Home hero — the masthead of "The Dossier" (direction sheet §6, adjusted
@@ -72,13 +72,21 @@ export function HomeHero() {
               {profile.slogan.value}
             </p>
 
+            {/* The hero's two primary actions lean toward the cursor on a
+                fine pointer (Magnetic — the one place this build reaches
+                for spring physics over CSS, per src/lib/motion/Magnetic's
+                own rationale). Plain press feedback on touch. */}
             <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center">
-              <Button href="/vision" variant="accent" size="lg" className="w-full sm:w-auto">
-                {t.hero.ctaPrimary}
-              </Button>
-              <Button href="/get-involved" size="lg" variant="ghost-on-dark" className="w-full sm:w-auto">
-                {t.hero.ctaSecondary}
-              </Button>
+              <Magnetic className="w-full sm:w-auto">
+                <Button href="/vision" variant="accent" size="lg" className="w-full sm:w-auto">
+                  {t.hero.ctaPrimary}
+                </Button>
+              </Magnetic>
+              <Magnetic className="w-full sm:w-auto">
+                <Button href="/get-involved" size="lg" variant="ghost-on-dark" className="w-full sm:w-auto">
+                  {t.hero.ctaSecondary}
+                </Button>
+              </Magnetic>
             </div>
           </div>
 
