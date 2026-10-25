@@ -83,7 +83,7 @@ export function StoryContent() {
                   <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                     <span className="font-display text-sm font-semibold tabular-nums text-ochre-300">{item.year}</span>
                     <h3 className="font-display text-lg font-semibold text-sand-50">{item.title}</h3>
-                    {item.status !== "verified" && <StatusBadge status={item.status} />}
+                    {item.status !== "verified" && <StatusBadge status={item.status} inverted />}
                   </div>
                   <p className="mt-1.5 text-sm leading-relaxed text-sand-100/75">{item.detail}</p>
                 </Reveal>

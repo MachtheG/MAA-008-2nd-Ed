@@ -205,7 +205,7 @@ export function WajirMap() {
         <div className="bg-field-green p-5 text-field-green-ink sm:p-7 lg:p-8">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <p className="text-sm font-semibold opacity-90">{t.ui.wards.constituencyLabel}</p>
-            <StatusBadge status={active.status} />
+            <StatusBadge status={active.status} inverted />
           </div>
           <h2 className="mt-3 font-display text-2xl font-semibold tracking-tight sm:text-3xl">{active.name}</h2>
 

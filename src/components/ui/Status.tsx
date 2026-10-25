@@ -10,18 +10,31 @@ const map = {
   tbc: { dot: "bg-flag-red", chip: "bg-flag-red/12 text-flag-red" },
 } as const;
 
+/** Same three states, legible on a dark or saturated field instead of
+ * the light paper ground: a solid white chip reads on any of this
+ * site's field colours (dossier ink, flag green, ochre) where the
+ * light-mode tint-on-tint chip above would lose contrast. */
+const mapInverted = {
+  verified: { dot: "bg-flag-green", chip: "bg-sand-50 text-flag-green-dark" },
+  draft: { dot: "bg-ochre-500", chip: "bg-sand-50 text-ochre-600" },
+  tbc: { dot: "bg-flag-red", chip: "bg-sand-50 text-flag-red" },
+} as const;
+
 /** Campaign-governance UI, not decoration — keeps its own small pill
  * convention (taste-skill's exception for real system chips) rather
- * than the page's square-corner law. */
+ * than the page's square-corner law. Pass `inverted` on a dark or
+ * saturated field colour. */
 export function StatusBadge({
   status,
+  inverted = false,
   className = "",
 }: {
   status: Status;
+  inverted?: boolean;
   className?: string;
 }) {
   const { t } = useLanguage();
-  const s = map[status];
+  const s = (inverted ? mapInverted : map)[status];
   return (
     <span
       className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[0.68rem] font-semibold tracking-wide ${s.chip} ${className}`}

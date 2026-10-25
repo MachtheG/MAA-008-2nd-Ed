@@ -32,9 +32,9 @@ export function VisionContent() {
     <>
       <PageHero title={t.ui.vision.title} intro={t.ui.vision.intro} image="/images/desert-expanse.jpg" imageAlt={t.ui.vision.imageAlt} />
 
-      <div className="bg-bg px-5 py-10 sm:px-8 sm:py-12">
-        <Container width="prose" className="px-0">
-          <p className="text-lead leading-[1.35] text-ink-700">{visionIntro}</p>
+      <div className="bg-bg py-10 sm:py-12">
+        <Container width="wide">
+          <p className="max-w-[60ch] text-lead leading-[1.35] text-ink-700">{visionIntro}</p>
           <div className="mt-5 flex items-center gap-2">
             <StatusBadge status="draft" />
             <span className="text-sm text-muted">{t.ui.home.draftNotice}</span>
