@@ -19,7 +19,7 @@ export function VolunteerForm() {
 
   if (submitted) {
     return (
-      <div className="rounded-2xl border border-flag-green/30 bg-flag-green/5 p-6 text-center sm:p-8">
+      <div className="bg-flag-green/8 p-6 text-center sm:p-8">
         <div className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-flag-green text-sand-50">
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
             <path
@@ -31,9 +31,7 @@ export function VolunteerForm() {
             />
           </svg>
         </div>
-        <h3 className="mt-4 font-display text-xl font-semibold text-ink-900">
-          {f.thanksHeading}
-        </h3>
+        <h3 className="mt-4 font-display text-xl font-semibold text-ink">{f.thanksHeading}</h3>
         <p className="mx-auto mt-2 max-w-sm text-sm text-ink-600">{f.thanksBody}</p>
         <button
           type="button"
@@ -47,10 +45,7 @@ export function VolunteerForm() {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="rounded-2xl border border-line bg-sand-50 p-5 sm:p-7 lg:p-8"
-    >
+    <form onSubmit={handleSubmit} className="bg-sand-50 p-5 sm:p-7 lg:p-8">
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label={f.fullName} htmlFor="v-name" required>
           <input id="v-name" name="name" type="text" required autoComplete="name" className={inputCls} />
@@ -89,7 +84,7 @@ export function VolunteerForm() {
           {f.interests.map((it) => (
             <label
               key={it}
-              className="flex cursor-pointer items-center gap-2.5 rounded-lg border border-line bg-sand-100/50 px-3.5 py-2.5 text-sm text-ink-700 hover:bg-sand-100"
+              className="flex cursor-pointer items-center gap-2.5 bg-surface px-3.5 py-2.5 text-sm text-ink-700 hover:bg-sand-200"
             >
               <input
                 type="checkbox"
@@ -105,17 +100,17 @@ export function VolunteerForm() {
 
       <button
         type="submit"
-        className="mt-7 w-full rounded-full bg-flag-green px-6 py-3.5 text-base font-semibold text-sand-50 shadow-sm transition-transform hover:-translate-y-0.5 sm:w-auto sm:px-10"
+        className="mt-7 w-full bg-flag-green px-6 py-3.5 text-base font-semibold text-sand-50 transition-transform active:scale-[0.97] sm:w-auto sm:px-10"
       >
         {f.submit}
       </button>
-      <p className="mt-3 text-xs text-ink-500">{f.demoNote}</p>
+      <p className="mt-3 text-xs text-muted">{f.demoNote}</p>
     </form>
   );
 }
 
 const inputCls =
-  "w-full rounded-lg border border-line-strong bg-sand-50 px-3.5 py-2.5 text-ink-900 placeholder:text-ink-400 focus:border-flag-green focus:outline-none focus:ring-2 focus:ring-flag-green/25";
+  "w-full bg-surface px-3.5 py-2.5 text-ink placeholder:text-ink-400 focus:outline-2 focus:outline-flag-green focus:-outline-offset-1";
 
 function Field({
   label,

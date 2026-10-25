@@ -154,6 +154,7 @@ export type UiCopy = {
     educationKicker: string;
     languagesKicker: string;
     countyKicker: string;
+    countyNote: string;
     ctaStory: string;
     ctaVision: string;
   };
@@ -458,6 +459,7 @@ const en: Dictionary = {
       educationKicker: "Education",
       languagesKicker: "Languages",
       countyKicker: "Wajir County record",
+      countyNote: "As supplied by the campaign; these figures are not yet marked verified, draft or to-confirm the way the rest of this site's content is.",
       ctaStory: "Read the full story",
       ctaVision: "The vision for Wajir",
     },
@@ -787,6 +789,7 @@ const sw: Dictionary = {
       educationKicker: "Elimu",
       languagesKicker: "Lugha",
       countyKicker: "Rekodi ya Kaunti ya Wajir",
+      countyNote: "Kama ilivyotolewa na kampeni; namba hizi bado hazijawekwa alama ya kuthibitishwa, rasimu au kuthibitishwa kama maudhui mengine ya tovuti hii.",
       ctaStory: "Soma hadithi kamili",
       ctaVision: "Dira ya Wajir",
     },
@@ -1106,6 +1109,7 @@ const so: Dictionary = {
       educationKicker: "Waxbarashada",
       languagesKicker: "Luugaha",
       countyKicker: "Rekodka Gobolka Wajir",
+      countyNote: "Sida ay kampeinku bixisay; tirooyinkan weli lama calaamadin sax, qabyo ama la xaqiijiyay sida qaybaha kale ee boggan.",
       ctaStory: "Akhri hadithu oo dhan",
       ctaVision: "Waxyaaraha Wajir",
     },

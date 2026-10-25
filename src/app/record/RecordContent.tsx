@@ -2,26 +2,11 @@
 
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
-import { Kicker } from "@/components/ui/Kicker";
-import { Reveal } from "@/components/ui/Reveal";
+import { RevealGroup } from "@/lib/motion";
 import { Button } from "@/components/ui/Button";
 import { StatusBadge } from "@/components/ui/Status";
 import { useContent } from "@/content/useContent";
 import { useLanguage } from "@/i18n/LanguageProvider";
-
-function CheckIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-      <path
-        d="M3.5 9.5l3.5 3.5 7.5-8"
-        stroke="currentColor"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
 
 export function RecordContent() {
   const { t } = useLanguage();
@@ -29,97 +14,75 @@ export function RecordContent() {
 
   return (
     <>
-      <PageHero
-        kicker={t.ui.record.kicker}
-        title={t.ui.record.title}
-        intro={t.ui.record.intro}
-      />
+      <PageHero title={t.ui.record.title} intro={t.ui.record.intro} />
 
-      <section className="bg-sand-50 py-12 sm:py-16 lg:py-24">
-        <Container>
-          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-            <Kicker>{t.ui.record.nationalKicker}</Kicker>
+      {/* National & international record — a ledger list, not icon cards:
+          told apart by space and a change of scale, not a hairline or a
+          circle-badge checkmark (house rule: no icon-topped cards). */}
+      <section className="bg-bg py-16 sm:py-20 lg:py-28">
+        <Container width="wide">
+          <div className="flex flex-wrap items-center gap-3">
+            <h2 className="font-display text-head font-semibold text-ink">{t.ui.record.nationalKicker}</h2>
             <StatusBadge status="verified" />
           </div>
 
-          <div className="mt-8 grid gap-5 sm:mt-10 sm:grid-cols-2">
-            {recordVerified.map((r, i) => (
-              <Reveal key={r.title} as="article" delay={(i % 2) * 80}>
-                <div className="flex h-full gap-4 rounded-2xl border border-line bg-sand-50 p-5 transition-shadow hover:shadow-md sm:p-6">
-                  <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-full bg-flag-green/10 text-flag-green-dark">
-                    <CheckIcon />
-                  </span>
-                  <div className="min-w-0">
-                    <h2 className="font-display text-lg font-semibold text-ink-900">
-                      {r.title}
-                    </h2>
-                    <p className="mt-1 text-sm leading-relaxed text-ink-600">
-                      {r.detail}
-                    </p>
-                  </div>
-                </div>
-              </Reveal>
+          <RevealGroup as="ul" stagger={60} className="mt-10 divide-y divide-sand-200">
+            {recordVerified.map((r) => (
+              <li key={r.title} className="grid gap-1 py-6 first:pt-0 sm:grid-cols-[1fr_2fr] sm:gap-8 sm:py-7">
+                <h3 className="font-display text-lg font-semibold text-ink sm:text-xl">{r.title}</h3>
+                <p className="text-body leading-relaxed text-ink-700">{r.detail}</p>
+              </li>
             ))}
-          </div>
+          </RevealGroup>
 
           {/* Education & languages */}
-          <div className="mt-10 grid gap-6 rounded-2xl border border-line bg-sand-100 p-6 sm:grid-cols-2 sm:p-9 lg:mt-12">
+          <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:mt-20">
             <div>
-              <Kicker tone="ochre">{t.ui.record.educationKicker}</Kicker>
+              <h2 className="font-display text-lg font-semibold text-flag-green-dark">{t.ui.record.educationKicker}</h2>
               <ul className="mt-4 space-y-3">
                 {profile.education.map((e) => (
                   <li key={e.degree}>
-                    <p className="font-display text-base font-semibold text-ink-900">
-                      {e.degree}
-                    </p>
-                    <p className="text-sm text-ink-500">{e.institution}</p>
+                    <p className="font-display text-base font-semibold text-ink">{e.degree}</p>
+                    <p className="text-sm text-muted">{e.institution}</p>
                   </li>
                 ))}
               </ul>
             </div>
             <div>
-              <Kicker tone="ochre">{t.ui.record.languagesKicker}</Kicker>
+              <h2 className="font-display text-lg font-semibold text-flag-green-dark">{t.ui.record.languagesKicker}</h2>
               <ul className="mt-4 flex flex-wrap gap-2">
                 {profile.languages.map((l) => (
-                  <li
-                    key={l}
-                    className="rounded-full bg-flag-green/10 px-3.5 py-1.5 text-sm font-medium text-flag-green-dark"
-                  >
+                  <li key={l} className="bg-flag-green/10 px-3.5 py-1.5 text-sm font-medium text-flag-green-dark">
                     {l}
                   </li>
                 ))}
               </ul>
             </div>
           </div>
+        </Container>
+      </section>
 
-          {/* County record */}
-          <div className="mt-10 lg:mt-12">
-            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-              <Kicker tone="ochre">{t.ui.record.countyKicker}</Kicker>
-              <StatusBadge status="verified" />
-            </div>
-            <div className="mt-8 grid gap-5 sm:mt-10 sm:grid-cols-2">
-              {countyAchievements.map((r, i) => (
-                <Reveal key={r.title} as="article" delay={(i % 2) * 80}>
-                  <div className="flex h-full gap-4 rounded-2xl border border-line bg-sand-100 p-5 transition-shadow hover:shadow-md sm:p-6">
-                    <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-full bg-ochre-400/10 text-ochre-600">
-                      <CheckIcon />
-                    </span>
-                    <div className="min-w-0">
-                      <h2 className="font-display text-lg font-semibold text-ink-900">
-                        {r.title}
-                      </h2>
-                      <p className="mt-1 text-sm leading-relaxed text-ink-600">
-                        {r.detail}
-                      </p>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
+      {/* County record — a tone step apart from the national section, not
+          a line. countyAchievements carries specific figures but no
+          verification status field in the content source (unlike the
+          rest of the site's content), so this heading discloses that
+          plainly rather than silently matching the "Verified" badge
+          above it. */}
+      <section className="bg-surface py-16 sm:py-20 lg:py-28">
+        <Container width="wide">
+          <h2 className="font-display text-head font-semibold text-ink">{t.ui.record.countyKicker}</h2>
+          <p className="mt-3 max-w-[60ch] text-sm text-muted">{t.ui.record.countyNote}</p>
 
-          <div className="mt-10 flex flex-wrap gap-3 lg:mt-12">
+          <RevealGroup as="ul" stagger={60} className="mt-10 divide-y divide-sand-300">
+            {countyAchievements.map((r) => (
+              <li key={r.title} className="grid gap-1 py-6 first:pt-0 sm:grid-cols-[1fr_2fr] sm:gap-8 sm:py-7">
+                <h3 className="font-display text-lg font-semibold text-ink sm:text-xl">{r.title}</h3>
+                <p className="text-body leading-relaxed text-ink-700">{r.detail}</p>
+              </li>
+            ))}
+          </RevealGroup>
+
+          <div className="mt-12 flex flex-wrap gap-3 lg:mt-16">
             <Button href="/story" variant="primary">{t.ui.record.ctaStory}</Button>
             <Button href="/vision" variant="accent">{t.ui.record.ctaVision}</Button>
           </div>
