@@ -47,11 +47,15 @@ export function SiteHeader() {
       >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-4 py-3 sm:gap-8 sm:px-8 sm:py-4 lg:py-4">
         {/* Brand */}
-        <Link
-          href="/"
-          className="group flex min-w-0 items-center gap-2.5 sm:gap-3"
-          aria-label={`${t.hero.name} — ${t.nav.home}`}
-        >
+        {/* No aria-label: the link's own visible text (the name plus
+            either "AFFEY"/brandLine2 or "for Governor…") already serves
+            as its accessible name. A hand-written aria-label here
+            previously didn't match that visible text closely enough
+            (axe's label-content-name-mismatch), and an aria-label
+            always wins over visible text for the accessible name, so a
+            mismatched one actively misleads voice-control and some
+            screen-reader users rather than merely being redundant. */}
+        <Link href="/" className="group flex min-w-0 items-center gap-2.5 sm:gap-3">
           <Image
             src="/images/WajirCOA.jpeg"
             alt="Wajir County coat of arms"

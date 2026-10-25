@@ -35,15 +35,23 @@ export function Reveal({ children, as: As = "div", delay = 0, className = "" }: 
  * Staggers its direct children through the same reveal, 70ms apart (within
  * the brief's 30–80ms band). Use for a heading → text → picture sequence
  * inside one section, instead of hand-rolling `delay={i * 70}` everywhere.
+ *
+ * `itemAs` sets the element each child is wrapped in — default `div`,
+ * but pass `"li"` when `as="ul"`/`"ol"`: a `<ul>`'s only valid direct
+ * children are `<li>`, so wrapping list items in a `<div>` here would be
+ * invalid HTML (an axe/Lighthouse-flagged a11y failure, not just a
+ * lint nicety).
  */
 export function RevealGroup({
   children,
   as: As = "div",
+  itemAs,
   stagger = 70,
   className = "",
 }: {
   children: ReactNode;
   as?: ElementType;
+  itemAs?: ElementType;
   stagger?: number;
   className?: string;
 }) {
@@ -51,7 +59,7 @@ export function RevealGroup({
   return (
     <As className={className}>
       {items.map((child, i) => (
-        <Reveal key={i} delay={i * stagger}>
+        <Reveal key={i} as={itemAs} delay={i * stagger}>
           {child}
         </Reveal>
       ))}

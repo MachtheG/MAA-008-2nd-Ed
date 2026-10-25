@@ -38,7 +38,7 @@ export function HomeHero() {
           fill
           priority
           sizes="100vw"
-          quality={90}
+          quality={82}
           className="scale-115 object-cover object-[center_65%] grain"
         />
       </Parallax>
@@ -88,7 +88,7 @@ export function HomeHero() {
               alt={t.ui.home.heroPhotoAlt}
               fill
               priority
-              quality={90}
+              quality={82}
               sizes="(max-width: 1024px) 92vw, 30rem"
               wrapperClassName="relative aspect-video"
               className="object-cover object-center"

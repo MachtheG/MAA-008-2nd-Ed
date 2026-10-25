@@ -68,12 +68,12 @@ export function SiteFooter() {
           <p>© {year} {t.ui.footer.copyright}</p>
           <p className="max-w-xl">{t.ui.footer.disclaimer}</p>
         </div>
-        <p className="mt-3 max-w-3xl text-[0.7rem] leading-relaxed text-sand-100/40">
+        <p className="mt-3 max-w-3xl text-[0.7rem] leading-relaxed text-sand-100/70">
           {t.ui.footer.photoCreditsLabel}{" "}
-          <a href="https://commons.wikimedia.org/w/index.php?curid=97274605" className="underline hover:text-sand-100/70">AMISOM Public Information (CC0)</a>,{" "}
-          <a href="https://commons.wikimedia.org/w/index.php?curid=16001833" className="underline hover:text-sand-100/70">Oxfam East Africa (CC BY 2.0)</a>,{" "}
-          <a href="https://commons.wikimedia.org/w/index.php?curid=13284136" className="underline hover:text-sand-100/70">Jorge Láscar (CC BY-SA 2.0)</a>,{" "}
-          <a href="https://www.flickr.com/photos/64924693@N00/39838085314" className="underline hover:text-sand-100/70">Nagarjun (CC BY 2.0)</a> — full list in{" "}
+          <a href="https://commons.wikimedia.org/w/index.php?curid=97274605" className="underline text-sand-100/70 hover:text-sand-100">AMISOM Public Information (CC0)</a>,{" "}
+          <a href="https://commons.wikimedia.org/w/index.php?curid=16001833" className="underline text-sand-100/70 hover:text-sand-100">Oxfam East Africa (CC BY 2.0)</a>,{" "}
+          <a href="https://commons.wikimedia.org/w/index.php?curid=13284136" className="underline text-sand-100/70 hover:text-sand-100">Jorge Láscar (CC BY-SA 2.0)</a>,{" "}
+          <a href="https://www.flickr.com/photos/64924693@N00/39838085314" className="underline text-sand-100/70 hover:text-sand-100">Nagarjun (CC BY 2.0)</a> — full list in{" "}
           <code className="text-sand-100/50">public/images/CREDITS.md</code>.
         </p>
       </Container>

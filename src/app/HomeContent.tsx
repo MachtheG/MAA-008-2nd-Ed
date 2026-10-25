@@ -79,27 +79,24 @@ function AboutSection() {
           </Reveal>
         </div>
 
-        <RevealGroup
-          as="dl"
-          className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4"
-          stagger={60}
-        >
-          <Fact value="1968" label={t.ui.home.factBorn} />
-          <Fact value="27" label={t.ui.home.factMp} />
-          <Fact value="3" label={t.ui.home.factDecades} />
-          <Fact value="2027" label={t.ui.home.factElection} />
-        </RevealGroup>
+        {/* One <div> per group directly under <dl> (axe's definition-list
+            rule): Reveal renders that one div itself, styled, rather than
+            wrapping a second div inside it. */}
+        <dl className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          {[
+            { value: "1968", label: t.ui.home.factBorn },
+            { value: "27", label: t.ui.home.factMp },
+            { value: "3", label: t.ui.home.factDecades },
+            { value: "2027", label: t.ui.home.factElection },
+          ].map((f, i) => (
+            <Reveal key={f.label} as="div" delay={i * 60} className="bg-surface px-4 py-4">
+              <dt className="font-display text-2xl font-semibold tabular-nums text-ink sm:text-3xl">{f.value}</dt>
+              <dd className="mt-1 text-sm text-muted">{f.label}</dd>
+            </Reveal>
+          ))}
+        </dl>
       </Container>
     </section>
-  );
-}
-
-function Fact({ value, label }: { value: string; label: string }) {
-  return (
-    <div className="bg-surface px-4 py-4">
-      <dt className="font-display text-2xl font-semibold tabular-nums text-ink sm:text-3xl">{value}</dt>
-      <dd className="mt-1 text-sm text-muted">{label}</dd>
-    </div>
   );
 }
 

@@ -4,10 +4,17 @@ import { type ReactNode } from "react";
 import type { Status } from "@/content/candidate";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
+/* The dot alone carries the status colour; the label text is always
+ * near-black (ink) or near-white (sand-50), never the status colour
+ * itself at the tint/weight a small 10.88px chip renders at — a chip
+ * audit (Lighthouse/axe) measured ochre-600-on-ochre-400/20 at 3.28:1
+ * against a 4.5:1 requirement. Colour + text together would still fail
+ * at this size for at least ochre and likely flag-red; ink-on-tint
+ * passes unconditionally regardless of which status tint sits under it. */
 const map = {
-  verified: { dot: "bg-flag-green", chip: "bg-flag-green/12 text-flag-green-dark" },
-  draft: { dot: "bg-ochre-500", chip: "bg-ochre-400/20 text-ochre-600" },
-  tbc: { dot: "bg-flag-red", chip: "bg-flag-red/12 text-flag-red" },
+  verified: { dot: "bg-flag-green", chip: "bg-flag-green/12 text-ink" },
+  draft: { dot: "bg-ochre-500", chip: "bg-ochre-400/20 text-ink" },
+  tbc: { dot: "bg-flag-red", chip: "bg-flag-red/12 text-ink" },
 } as const;
 
 /** Same three states, legible on a dark or saturated field instead of
@@ -15,9 +22,9 @@ const map = {
  * site's field colours (dossier ink, flag green, ochre) where the
  * light-mode tint-on-tint chip above would lose contrast. */
 const mapInverted = {
-  verified: { dot: "bg-flag-green", chip: "bg-sand-50 text-flag-green-dark" },
-  draft: { dot: "bg-ochre-500", chip: "bg-sand-50 text-ochre-600" },
-  tbc: { dot: "bg-flag-red", chip: "bg-sand-50 text-flag-red" },
+  verified: { dot: "bg-flag-green", chip: "bg-sand-50 text-ink" },
+  draft: { dot: "bg-ochre-500", chip: "bg-sand-50 text-ink" },
+  tbc: { dot: "bg-flag-red", chip: "bg-sand-50 text-ink" },
 } as const;
 
 /** Campaign-governance UI, not decoration — keeps its own small pill

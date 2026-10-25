@@ -2,7 +2,7 @@
 
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
-import { RevealGroup } from "@/lib/motion";
+import { Reveal } from "@/lib/motion";
 import { Button } from "@/components/ui/Button";
 import { StatusBadge } from "@/components/ui/Status";
 import { useContent } from "@/content/useContent";
@@ -26,14 +26,14 @@ export function RecordContent() {
             <StatusBadge status="verified" />
           </div>
 
-          <RevealGroup as="ul" stagger={60} className="mt-10 divide-y divide-sand-200">
-            {recordVerified.map((r) => (
-              <li key={r.title} className="grid gap-1 py-6 first:pt-0 sm:grid-cols-[1fr_2fr] sm:gap-8 sm:py-7">
+          <ul className="mt-10 divide-y divide-sand-200">
+            {recordVerified.map((r, i) => (
+              <Reveal key={r.title} as="li" delay={i * 60} className="grid gap-1 py-6 first:pt-0 sm:grid-cols-[1fr_2fr] sm:gap-8 sm:py-7">
                 <h3 className="font-display text-lg font-semibold text-ink sm:text-xl">{r.title}</h3>
                 <p className="text-body leading-relaxed text-ink-700">{r.detail}</p>
-              </li>
+              </Reveal>
             ))}
-          </RevealGroup>
+          </ul>
 
           {/* Education & languages */}
           <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:mt-20">
@@ -73,14 +73,14 @@ export function RecordContent() {
           <h2 className="font-display text-head font-semibold text-ink">{t.ui.record.countyKicker}</h2>
           <p className="mt-3 max-w-[60ch] text-sm text-muted">{t.ui.record.countyNote}</p>
 
-          <RevealGroup as="ul" stagger={60} className="mt-10 divide-y divide-sand-300">
-            {countyAchievements.map((r) => (
-              <li key={r.title} className="grid gap-1 py-6 first:pt-0 sm:grid-cols-[1fr_2fr] sm:gap-8 sm:py-7">
+          <ul className="mt-10 divide-y divide-sand-300">
+            {countyAchievements.map((r, i) => (
+              <Reveal key={r.title} as="li" delay={i * 60} className="grid gap-1 py-6 first:pt-0 sm:grid-cols-[1fr_2fr] sm:gap-8 sm:py-7">
                 <h3 className="font-display text-lg font-semibold text-ink sm:text-xl">{r.title}</h3>
                 <p className="text-body leading-relaxed text-ink-700">{r.detail}</p>
-              </li>
+              </Reveal>
             ))}
-          </RevealGroup>
+          </ul>
 
           <div className="mt-12 flex flex-wrap gap-3 lg:mt-16">
             <Button href="/story" variant="primary">{t.ui.record.ctaStory}</Button>
