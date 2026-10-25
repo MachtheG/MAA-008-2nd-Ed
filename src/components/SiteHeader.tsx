@@ -99,14 +99,17 @@ export function SiteHeader() {
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
           {/* Language toggle stays reachable at every width */}
           <LanguageToggle className="shrink-0" />
-          <Button
-            href="/get-involved#donate"
-            variant="urgent"
-            size="md"
-            className="hidden lg:inline-flex"
-          >
-            {t.nav.donate}
-          </Button>
+          {/* Wrapped, not toggled on the Button itself: Button's own base
+              classes set `display` unconditionally, which fights a
+              `hidden lg:inline-flex` passed in as className (same CSS
+              property, source-order dependent, so it was winning at
+              mobile width and the donate button was showing where it
+              shouldn't). */}
+          <div className="hidden lg:block">
+            <Button href="/get-involved#donate" variant="urgent" size="md">
+              {t.nav.donate}
+            </Button>
+          </div>
 
           <button
             type="button"

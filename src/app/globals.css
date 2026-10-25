@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "../lib/motion/split-text.css";
 @import "../lib/motion/parallax.css";
+@import "../lib/motion/image-reveal.css";
 
 /* =============================================================
    AFFEY — Design System v2 "The Dossier"
